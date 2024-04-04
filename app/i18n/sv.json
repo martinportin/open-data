@@ -1,0 +1,17 @@
+{
+    "home": {
+        "home": "Hem"
+    },
+    "publicSector": {
+        "publicSector": "Offentlig sektor"
+    },
+    "principals": {
+        "municipal": "Kommunal",
+        "individual": "Enskild",
+        "principals": "Huvudmän",
+        "organizationNumber": "Organisationsnummer",
+        "name": "Namn",
+        "type": "Typ",
+        "quantity": "Antal"
+    }
+}
