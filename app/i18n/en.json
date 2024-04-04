@@ -1,0 +1,17 @@
+{
+    "home": {
+        "home": "Home Page"
+    },
+    "publicSector": {
+        "publicSector": "Public Sector"
+    },
+    "principals": {
+        "municipal": "Municipal",
+        "individual": "Private",
+        "principals": "Principals",
+        "organizationNumber": "Organization Number",
+        "name": "Name",
+        "type": "Type",
+        "quantity": "Quantity"
+    }
+}
