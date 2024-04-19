@@ -1,12 +1,12 @@
-import { Locale, getDictionary } from '@/app/i18n/dictionaries'
-import Link from 'next/link'
+import { Locale, getDictionary } from '@/app/i18n/dictionaries';
+import Link from 'next/link';
 
 export default async function MainNavigationBar({
-  params: { lang }
+  params: { lang },
 }: {
-  params: { lang: Locale }
+  params: { lang: Locale };
 }) {
-  const dictionary = await getDictionary(lang)
+  const dictionary = await getDictionary(lang);
   return (
     <nav>
       <Link href={`/${lang}`}>{dictionary.home.home}</Link>
@@ -14,5 +14,5 @@ export default async function MainNavigationBar({
         {dictionary.publicSector.publicSector}
       </Link>
     </nav>
-  )
+  );
 }
