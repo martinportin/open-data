@@ -1,22 +1,22 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import '../globals.css'
-import MainNavigationBar from './components/MainNavigationBar'
-import { Locale } from '../i18n/dictionaries'
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import '../globals.css';
+import MainNavigationBar from './components/MainNavigationBar';
+import { Locale } from '../i18n/dictionaries';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Open Data',
-  description: ''
-}
+  description: '',
+};
 
 export default function RootLayout({
   children,
-  params
+  params,
 }: Readonly<{
-  children: React.ReactNode
-  params: { lang: Locale }
+  children: React.ReactNode;
+  params: { lang: Locale };
 }>) {
   return (
     <html lang="en">
@@ -25,5 +25,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  )
+  );
 }
