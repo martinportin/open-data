@@ -2,8 +2,8 @@ import type { NextRequest } from 'next/server';
 import Negotiator from 'negotiator';
 import { match } from '@formatjs/intl-localematcher';
 
-const defaultLocale = 'en-GB';
-const locales = [defaultLocale, 'sv-SE'];
+const defaultLocale: Locale = 'en-GB';
+const locales: Locale[] = [defaultLocale, 'sv-SE'];
 
 const pathnameHasLocale = (pathname: string) => {
   return locales.some(isInPathname(pathname));
