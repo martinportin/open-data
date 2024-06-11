@@ -3,12 +3,13 @@ import PrincipalsTableHeader from './PrincipalsTableHeader';
 
 export default function PrincipalsTable({
   params,
-}: Readonly<{ params: { dictionary: Dictionary; principals: Principal[] } }>) {
-  const { dictionary, principals } = params;
+  principals,
+}: Readonly<{ params: { dictionary: Dictionary }; principals: Principal[] }>) {
+  const { dictionary } = params;
   return (
     <table>
       <PrincipalsTableHeader params={{ dictionary }} />
-      <PrincipalsTableBody params={{ principals }} />
+      <PrincipalsTableBody principals={principals} />
     </table>
   );
 }

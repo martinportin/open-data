@@ -12,7 +12,7 @@ export default async function PrincipalsPage({
   ]);
   return (
     <>
-      <Principals params={{ dictionary, principals }} />
+      <Principals params={{ dictionary }} principals={principals} />
     </>
   );
 }

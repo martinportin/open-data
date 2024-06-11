@@ -1,0 +1,203 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`principals page renders correctly 1`] = `
+[
+  <h1>
+    Principals
+  </h1>,
+  <h2>
+    Quantity
+     (
+    4
+    )
+  </h2>,
+  <form>
+    <label
+      htmlFor="publicCheckbox"
+    >
+      Public
+      :
+    </label>
+    <input
+      checked={true}
+      id="publicCheckbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      htmlFor="privateCheckbox"
+    >
+      Private
+      :
+    </label>
+    <input
+      checked={true}
+      id="privateCheckbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </form>,
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Organization Number
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Type
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          5007147589
+        </td>
+        <td>
+          Enskild 1
+        </td>
+        <td>
+          Enskild
+        </td>
+      </tr>
+      <tr>
+        <td>
+          2120000050
+        </td>
+        <td>
+          Kommunal 1
+        </td>
+        <td>
+          Kommunal
+        </td>
+      </tr>
+      <tr>
+        <td>
+          5566024906
+        </td>
+        <td>
+          Kommunal 2
+        </td>
+        <td>
+          Kommunal
+        </td>
+      </tr>
+      <tr>
+        <td>
+          5568505191
+        </td>
+        <td>
+          Enskild 2
+        </td>
+        <td>
+          Enskild
+        </td>
+      </tr>
+    </tbody>
+  </table>,
+]
+`;
+
+exports[`principals page the principals componentrenders correctly 1`] = `
+[
+  <h1>
+    Principals
+  </h1>,
+  <h2>
+    Quantity
+     (
+    4
+    )
+  </h2>,
+  <form>
+    <label
+      htmlFor="publicCheckbox"
+    >
+      Public
+      :
+    </label>
+    <input
+      checked={true}
+      id="publicCheckbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+    <label
+      htmlFor="privateCheckbox"
+    >
+      Private
+      :
+    </label>
+    <input
+      checked={true}
+      id="privateCheckbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </form>,
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Organization Number
+        </th>
+        <th>
+          Name
+        </th>
+        <th>
+          Type
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          5007147589
+        </td>
+        <td>
+          Enskild 1
+        </td>
+        <td>
+          Enskild
+        </td>
+      </tr>
+      <tr>
+        <td>
+          2120000050
+        </td>
+        <td>
+          Kommunal 1
+        </td>
+        <td>
+          Kommunal
+        </td>
+      </tr>
+      <tr>
+        <td>
+          5566024906
+        </td>
+        <td>
+          Kommunal 2
+        </td>
+        <td>
+          Kommunal
+        </td>
+      </tr>
+      <tr>
+        <td>
+          5568505191
+        </td>
+        <td>
+          Enskild 2
+        </td>
+        <td>
+          Enskild
+        </td>
+      </tr>
+    </tbody>
+  </table>,
+]
+`;
