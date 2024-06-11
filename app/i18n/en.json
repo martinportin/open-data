@@ -6,8 +6,8 @@
         "publicSector": "Public Sector"
     },
     "principals": {
-        "municipal": "Municipal",
-        "individual": "Private",
+        "public": "Public",
+        "private": "Private",
         "principals": "Principals",
         "organizationNumber": "Organization Number",
         "name": "Name",

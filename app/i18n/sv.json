@@ -6,8 +6,8 @@
         "publicSector": "Offentlig sektor"
     },
     "principals": {
-        "municipal": "Kommunal",
-        "individual": "Enskild",
+        "public": "Kommunal",
+        "private": "Enskild",
         "principals": "Huvudmän",
         "organizationNumber": "Organisationsnummer",
         "name": "Namn",
