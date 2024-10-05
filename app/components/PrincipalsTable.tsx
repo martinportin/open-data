@@ -1,3 +1,6 @@
+import PrincipalsTableBody from "./PrincipalsTableBody";
+import PrincipalsTableHeader from "./PrincipalsTableHeader";
+
 export default function PrincipalsTable({
   dictionary,
   principals
@@ -5,5 +8,10 @@ export default function PrincipalsTable({
   dictionary: Dictionary;
   principals: Principal[];
 }): JSX.Element {
-  return <div></div>;
+  return (
+    <table>
+      <PrincipalsTableHeader dictionary={dictionary} />
+      <PrincipalsTableBody principals={principals} />
+    </table>
+  );
 }
