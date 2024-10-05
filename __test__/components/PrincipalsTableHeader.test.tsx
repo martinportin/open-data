@@ -23,7 +23,7 @@ describe("principals table header", () => {
       name: "Name",
       type: "Type"
     };
-    const { getAllByRole, getByRole } = render(
+    const { getByRole } = render(
       <PrincipalsTableHeader dictionary={englishDictionary} />
     );
     expect(getByRole("columnheader", { name: /Organization number/i }));
