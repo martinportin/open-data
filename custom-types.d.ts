@@ -1,8 +1,6 @@
 //Dictionary
 interface Dictionary {
-  organizationNumber: string;
-  name: string;
-  type: string;
+  [key: string]: string;
 }
 //Principals
 interface Principal {
