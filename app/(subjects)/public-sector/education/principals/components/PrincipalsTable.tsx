@@ -1,5 +1,5 @@
-import PrincipalsTableBody from "./PrincipalsTableBody";
 import PrincipalsTableHeader from "./PrincipalsTableHeader";
+import PrincipalsTableBody from "./PrincipalsTableBody";
 
 export default function PrincipalsTable({
   dictionary,

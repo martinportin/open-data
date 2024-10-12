@@ -1,4 +1,4 @@
-import PrincipalsTableCounter from "@/app/components/PrincipalsTableCounter";
+import PrincipalsTableCounter from "@/app/(subjects)/public-sector/education/principals/components/PrincipalsTableCounter";
 import { render } from "@testing-library/react";
 
 describe("principals table counter", () => {

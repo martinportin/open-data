@@ -1,4 +1,4 @@
-import PrincipalsTableHeader from "@/app/components/PrincipalsTableHeader";
+import PrincipalsTableHeader from "@/app/(subjects)/public-sector/education/principals/components/PrincipalsTableHeader";
 import { render } from "@testing-library/react";
 
 describe("principals table header", () => {

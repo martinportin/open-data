@@ -1,4 +1,4 @@
-import PrincipalsTableBody from "@/app/components/PrincipalsTableBody";
+import PrincipalsTableBody from "@/app/(subjects)/public-sector/education/principals/components/PrincipalsTableBody";
 import { render } from "@testing-library/react";
 
 describe("principals table body", () => {

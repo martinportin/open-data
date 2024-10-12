@@ -8,3 +8,9 @@ interface Principal {
   Namn: string;
   Typ: string;
 }
+
+interface PrincipalsRecord {
+  Uttagsdatum: string;
+  Fotnot: string;
+  Huvudman: Principal[];
+}
