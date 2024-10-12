@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 describe("principals page", () => {
   test("should display principals table counter", () => {
     const { getByRole } = render(<PrincipalsPage />);
-    expect(getByRole("heading", { name: /Antal \(1\)/i }));
+    expect(getByRole("heading", { name: /Antal \(2\)/i }));
   });
 
   test("should display principals table toolbar", () => {
@@ -15,7 +15,7 @@ describe("principals page", () => {
   test("should display principals table including table header and table body", () => {
     const { getByRole, getAllByRole } = render(<PrincipalsPage />);
     expect(getByRole("table"));
-    expect(getAllByRole("row")).toHaveLength(2);
-    expect(getAllByRole("columnheader")).toHaveLength(4);
+    expect(getAllByRole("row")).toHaveLength(3);
+    expect(getAllByRole("columnheader")).toHaveLength(5);
   });
 });
