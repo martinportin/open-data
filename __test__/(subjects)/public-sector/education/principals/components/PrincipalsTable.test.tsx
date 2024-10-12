@@ -1,4 +1,4 @@
-import PrincipalsTable from "@/app/components/PrincipalsTable";
+import PrincipalsTable from "@/app/(subjects)/public-sector/education/principals/components/PrincipalsTable";
 import { render } from "@testing-library/react";
 
 describe("principals table", () => {

@@ -1,4 +1,4 @@
-import PrincipalsTableToolbar from "@/app/components/PrincipalsTableToolbar";
+import PrincipalsTableToolbar from "@/app/(subjects)/public-sector/education/principals/components/PrincipalsTableToolbar";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
