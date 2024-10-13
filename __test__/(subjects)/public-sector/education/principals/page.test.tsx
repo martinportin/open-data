@@ -2,6 +2,18 @@ import PrincipalsPage from "@/app/(subjects)/public-sector/education/principals/
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+async function typeInSearchInput(searchInputText: string) {
+  const user = userEvent.setup();
+  const { getByLabelText, getAllByRole, getByRole } = render(
+    <PrincipalsPage />
+  );
+  const searchInput: HTMLInputElement = getByLabelText(
+    /Sök/i
+  ) as HTMLInputElement;
+  await user.type(searchInput, searchInputText);
+  return { getAllByRole, getByRole };
+}
+
 describe("principals page", () => {
   test("should display principals table counter", () => {
     const { getByRole } = render(<PrincipalsPage />);
@@ -59,15 +71,45 @@ describe("principals page", () => {
     expect(getByRole("heading", { name: /Antal \(0\)/i }));
   });
 
-  async function typeInSearchInput(searchInputText: string) {
-    const user = userEvent.setup();
-    const { getByLabelText, getAllByRole, getByRole } = render(
-      <PrincipalsPage />
-    );
-    const searchInput: HTMLInputElement = getByLabelText(
-      /Sök/i
-    ) as HTMLInputElement;
-    await user.type(searchInput, searchInputText);
-    return { getAllByRole, getByRole };
-  }
+  test("should uncheck when clicking the public checkobox", async () => {
+    const { getByLabelText } = render(<PrincipalsPage />);
+    const publicCheckbox = getByLabelText(/Kommunal/i) as HTMLInputElement;
+    await userEvent.click(publicCheckbox);
+    expect(publicCheckbox.checked).toBeFalsy();
+  });
+
+  test("should uncheck when clicking the private checkobox", async () => {
+    const { getByLabelText } = render(<PrincipalsPage />);
+    const privateCheckbox = getByLabelText(/Enskild/i) as HTMLInputElement;
+    await userEvent.click(privateCheckbox);
+    expect(privateCheckbox.checked).toBeFalsy();
+  });
+
+  test("should display all principals when public and private checkbox is cheked", () => {
+    const { getAllByRole } = render(<PrincipalsPage />);
+    expect(getAllByRole("row")).toHaveLength(3);
+  });
+
+  test("should display the public principals when public checkbox is checked", async () => {
+    const { getByLabelText, getAllByRole } = render(<PrincipalsPage />);
+    const publicCheckbox = getByLabelText(/Kommunal/i) as HTMLInputElement;
+    await userEvent.click(publicCheckbox);
+    expect(getAllByRole("row")).toHaveLength(2);
+  });
+
+  test("should display public principals when public checkbox is checked", async () => {
+    const { getByLabelText, getAllByRole } = render(<PrincipalsPage />);
+    const privateCheckbox = getByLabelText(/Enskild/i) as HTMLInputElement;
+    await userEvent.click(privateCheckbox);
+    expect(getAllByRole("row")).toHaveLength(2);
+  });
+
+  test("should display no principals when public and private checkobox is unchecked", async () => {
+    const { getByLabelText, getAllByRole } = render(<PrincipalsPage />);
+    const publicCheckbox = getByLabelText(/Kommunal/i) as HTMLInputElement;
+    await userEvent.click(publicCheckbox);
+    const privateCheckbox = getByLabelText(/Enskild/i) as HTMLInputElement;
+    await userEvent.click(privateCheckbox);
+    expect(getAllByRole("row")).toHaveLength(1);
+  });
 });
