@@ -1,11 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import PrincipalsTableCounter from "@/app/(subjects)/public-sector/education/principals/components/PrincipalsTableCounter";
 import Principals from "@/app/(subjects)/public-sector/education/principals/components/Principals";
 import PrincipalsTableToolbar from "./components/PrincipalsTableToolbar";
 import PrincipalsTable from "./components/PrincipalsTable";
 
 export default function PrincipalsPage(): JSX.Element {
+  const [searchInput, setSearchInput] = useState("");
+
   const swedishDictionary = {
     numberOf: "Antal",
     organizationNumber: "Organisationsnummer",
@@ -24,18 +27,30 @@ export default function PrincipalsPage(): JSX.Element {
     ]
   };
 
-  function handleInputChange() {}
+  const principals: Principals = new Principals(principalsRecord);
+
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchInput(event.target.value);
+  }
 
   function handleCheckboxChange() {}
-  const principals: Principals = new Principals(principalsRecord);
+
+  function filteredPrincipals() {
+    return principals.principals.filter(
+      (principal) =>
+        principal.PerOrgNr.includes(searchInput) ||
+        principal.Namn.includes(searchInput)
+    );
+  }
   return (
     <>
       <PrincipalsTableCounter
         dictionary={swedishDictionary}
-        principals={principals.principals}
+        principals={filteredPrincipals()}
       />
       <PrincipalsTableToolbar
         dictionary={swedishDictionary}
+        searchInput={searchInput}
         onInputChange={handleInputChange}
         publicChecked={false}
         privateChecked={false}
@@ -43,7 +58,7 @@ export default function PrincipalsPage(): JSX.Element {
       />
       <PrincipalsTable
         dictionary={swedishDictionary}
-        principals={principals.principals}
+        principals={filteredPrincipals()}
       />
     </>
   );

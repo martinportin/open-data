@@ -1,11 +1,13 @@
 export default function PrincipalsTableToolbar({
   dictionary,
+  searchInput,
   onInputChange,
   publicChecked,
   privateChecked,
   onCheckboxChange
 }: {
   dictionary: Dictionary;
+  searchInput: string;
   onInputChange: React.ChangeEventHandler<HTMLInputElement>;
   publicChecked: boolean;
   privateChecked: boolean;
@@ -15,7 +17,8 @@ export default function PrincipalsTableToolbar({
     <menu>
       <li>
         <label>
-          {dictionary.search}: <input id="search" onChange={onInputChange} />
+          {dictionary.search}:
+          <input id="search" value={searchInput} onChange={onInputChange} />
         </label>
       </li>
       <li>
