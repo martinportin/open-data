@@ -22,6 +22,7 @@ describe("principle table toolbar", () => {
     const { getByRole } = render(
       <PrincipalsTableToolbar
         dictionary={swedishDictionary}
+        searchInput={""}
         onInputChange={handleSerachInputChangeMock}
         publicChecked={true}
         privateChecked={true}
@@ -37,6 +38,7 @@ describe("principle table toolbar", () => {
     const { getByRole } = render(
       <PrincipalsTableToolbar
         dictionary={swedishDictionary}
+        searchInput={""}
         onInputChange={handleSerachInputChangeMock}
         publicChecked={true}
         privateChecked={true}
@@ -52,6 +54,7 @@ describe("principle table toolbar", () => {
     const { getByRole } = render(
       <PrincipalsTableToolbar
         dictionary={swedishDictionary}
+        searchInput={""}
         onInputChange={handleSerachInputChangeMock}
         publicChecked={true}
         privateChecked={true}
@@ -67,6 +70,7 @@ describe("principle table toolbar", () => {
     const { getByRole } = render(
       <PrincipalsTableToolbar
         dictionary={swedishDictionary}
+        searchInput={""}
         onInputChange={handleSerachInputChangeMock}
         publicChecked={true}
         privateChecked={true}

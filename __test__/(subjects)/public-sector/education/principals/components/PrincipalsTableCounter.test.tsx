@@ -9,11 +9,11 @@ describe("principals table counter", () => {
     numberOf: "Number of principals"
   };
   const onePrincipal = [
-    { PerOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" }
+    { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" }
   ];
   const twoPrincipals: Principal[] = [
-    { PerOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" },
-    { PerOrgNr: "0000000002", Namn: "Principal 2", Typ: "Type 2" }
+    { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" },
+    { PeOrgNr: "0000000002", Namn: "Principal 2", Typ: "Type 2" }
   ];
   test("should display a header in swedish with the number of one", () => {
     const { getByRole } = render(

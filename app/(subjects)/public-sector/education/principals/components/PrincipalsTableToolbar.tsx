@@ -5,14 +5,14 @@ export default function PrincipalsTableToolbar({
   publicChecked,
   privateChecked,
   onCheckboxChange
-}: {
+}: Readonly<{
   dictionary: Dictionary;
   searchInput: string;
   onInputChange: React.ChangeEventHandler<HTMLInputElement>;
   publicChecked: boolean;
   privateChecked: boolean;
   onCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
-}): JSX.Element {
+}>): JSX.Element {
   return (
     <menu>
       <li>

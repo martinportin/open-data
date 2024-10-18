@@ -1,11 +1,11 @@
 export default function PrincipalsTableBody({
   principals
-}: {
+}: Readonly<{
   principals: Principal[];
-}): JSX.Element {
+}>): JSX.Element {
   const tableRows = principals.map((principal) => (
-    <tr key={principal.PerOrgNr}>
-      <th>{principal.PerOrgNr}</th>
+    <tr key={principal.PeOrgNr}>
+      <th>{principal.PeOrgNr}</th>
       <td>{principal.Namn}</td>
       <td>{principal.Typ}</td>
     </tr>

@@ -1,8 +1,8 @@
 export default function PrincipalsTableHeader({
   dictionary
-}: {
+}: Readonly<{
   dictionary: Dictionary;
-}): JSX.Element {
+}>): JSX.Element {
   return (
     <thead>
       <tr>
