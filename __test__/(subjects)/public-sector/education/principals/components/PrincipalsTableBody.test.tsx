@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 describe("principals table body", () => {
   test("should return one row with three cells", () => {
     const onePrincipal: Principal[] = [
-      { PerOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" }
+      { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" }
     ];
     const { getByRole } = render(
       <PrincipalsTableBody principals={onePrincipal} />
@@ -16,8 +16,8 @@ describe("principals table body", () => {
 
   test("should return two rows with three cells each", () => {
     const twoPrincipals: Principal[] = [
-      { PerOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" },
-      { PerOrgNr: "0000000002", Namn: "Principal 2", Typ: "Type 2" }
+      { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" },
+      { PeOrgNr: "0000000002", Namn: "Principal 2", Typ: "Type 2" }
     ];
     const { getAllByRole, getByRole } = render(
       <PrincipalsTableBody principals={twoPrincipals} />

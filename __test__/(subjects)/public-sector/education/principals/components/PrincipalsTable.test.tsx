@@ -9,7 +9,7 @@ describe("principals table", () => {
       type: "Typ"
     };
     const onePrincipal = [
-      { PerOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" }
+      { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" }
     ];
     const columnHeaders = [/Organisationsnummer/i, /Namn/i, /Typ/i];
     const { getByRole, getAllByRole } = render(
@@ -31,8 +31,8 @@ describe("principals table", () => {
       type: "Type"
     };
     const twoPrincipals: Principal[] = [
-      { PerOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" },
-      { PerOrgNr: "0000000002", Namn: "Principal 2", Typ: "Type 2" }
+      { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Type 1" },
+      { PeOrgNr: "0000000002", Namn: "Principal 2", Typ: "Type 2" }
     ];
     const columnHeaders = [/Organization Number/i, /Name/i, /Type/i];
     const { getByRole, getAllByRole } = render(

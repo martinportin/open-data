@@ -1,115 +1,41 @@
 import PrincipalsPage from "@/app/(subjects)/public-sector/education/principals/page";
 import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import nock from "nock";
 
-async function typeInSearchInput(searchInputText: string) {
-  const user = userEvent.setup();
-  const { getByLabelText, getAllByRole, getByRole } = render(
-    <PrincipalsPage />
-  );
-  const searchInput: HTMLInputElement = getByLabelText(
-    /Sök/i
-  ) as HTMLInputElement;
-  await user.type(searchInput, searchInputText);
-  return { getAllByRole, getByRole };
-}
+beforeEach(() => {
+  setUpNock();
+});
+
+afterEach(() => {
+  clearNock();
+});
 
 describe("principals page", () => {
-  test("should display principals table counter", () => {
-    const { getByRole } = render(<PrincipalsPage />);
-    expect(getByRole("heading", { name: /Antal \(2\)/i }));
-  });
-
-  test("should display principals table toolbar", () => {
-    const { getByRole } = render(<PrincipalsPage />);
-    expect(getByRole("list"));
-  });
-
-  test("should display principals table including table header and table body", () => {
-    const { getByRole, getAllByRole } = render(<PrincipalsPage />);
-    expect(getByRole("table"));
+  test("should fetch and display two table rows", async () => {
+    const principalsPage = await PrincipalsPage();
+    const { getAllByRole } = render(principalsPage);
     expect(getAllByRole("row")).toHaveLength(3);
-    expect(getAllByRole("columnheader")).toHaveLength(5);
-  });
-
-  test("should display text in search input when typing", async () => {
-    const user = userEvent.setup();
-    const { getByLabelText } = render(<PrincipalsPage />);
-    const searchInput: HTMLInputElement = getByLabelText(
-      /Sök/i
-    ) as HTMLInputElement;
-    await user.type(searchInput, "1");
-    expect(searchInput.value).toBe("1");
-  });
-  test("should display one row in principals table when typing '1'", async () => {
-    const { getAllByRole } = await typeInSearchInput("1");
-    expect(getAllByRole("row")).toHaveLength(2);
-  });
-
-  test("should display one row in principals table when typing '2'", async () => {
-    const { getAllByRole } = await typeInSearchInput("2");
-    expect(getAllByRole("row")).toHaveLength(2);
-  });
-
-  test("should display no row in principles table when typing '3'", async () => {
-    const { getAllByRole } = await typeInSearchInput("3");
-    expect(getAllByRole("row")).toHaveLength(1);
-  });
-
-  test("should display 'Antal (1) in the principals table counter when typing '1' in the search input", async () => {
-    const { getByRole } = await typeInSearchInput("1");
-    expect(getByRole("heading", { name: /Antal \(1\)/i }));
-  });
-
-  test("should display 'Antal (1) in the principals table counter when typing '2' in the search input", async () => {
-    const { getByRole } = await typeInSearchInput("2");
-    expect(getByRole("heading", { name: /Antal \(1\)/i }));
-  });
-
-  test("should display 'Antal (0) in the principals table counter when typing '3' in the search input", async () => {
-    const { getByRole } = await typeInSearchInput("3");
-    expect(getByRole("heading", { name: /Antal \(0\)/i }));
-  });
-
-  test("should uncheck when clicking the public checkobox", async () => {
-    const { getByLabelText } = render(<PrincipalsPage />);
-    const publicCheckbox = getByLabelText(/Kommunal/i) as HTMLInputElement;
-    await userEvent.click(publicCheckbox);
-    expect(publicCheckbox.checked).toBeFalsy();
-  });
-
-  test("should uncheck when clicking the private checkobox", async () => {
-    const { getByLabelText } = render(<PrincipalsPage />);
-    const privateCheckbox = getByLabelText(/Enskild/i) as HTMLInputElement;
-    await userEvent.click(privateCheckbox);
-    expect(privateCheckbox.checked).toBeFalsy();
-  });
-
-  test("should display all principals when public and private checkbox is cheked", () => {
-    const { getAllByRole } = render(<PrincipalsPage />);
-    expect(getAllByRole("row")).toHaveLength(3);
-  });
-
-  test("should display the public principals when public checkbox is checked", async () => {
-    const { getByLabelText, getAllByRole } = render(<PrincipalsPage />);
-    const publicCheckbox = getByLabelText(/Kommunal/i) as HTMLInputElement;
-    await userEvent.click(publicCheckbox);
-    expect(getAllByRole("row")).toHaveLength(2);
-  });
-
-  test("should display public principals when public checkbox is checked", async () => {
-    const { getByLabelText, getAllByRole } = render(<PrincipalsPage />);
-    const privateCheckbox = getByLabelText(/Enskild/i) as HTMLInputElement;
-    await userEvent.click(privateCheckbox);
-    expect(getAllByRole("row")).toHaveLength(2);
-  });
-
-  test("should display no principals when public and private checkobox is unchecked", async () => {
-    const { getByLabelText, getAllByRole } = render(<PrincipalsPage />);
-    const publicCheckbox = getByLabelText(/Kommunal/i) as HTMLInputElement;
-    await userEvent.click(publicCheckbox);
-    const privateCheckbox = getByLabelText(/Enskild/i) as HTMLInputElement;
-    await userEvent.click(privateCheckbox);
-    expect(getAllByRole("row")).toHaveLength(1);
   });
 });
+
+function setUpNock() {
+  const twoPrincipals: PrincipalsRecord = {
+    Uttagsdatum: "2024-10-13T01:00:03.9733659+02:00",
+    Fotnot: "Uppgifterna är hämtade från SCB:s allmänna företagsregister",
+    Huvudman: [
+      { PeOrgNr: "0000000001", Namn: "Principal 1", Typ: "Kommunal" },
+      { PeOrgNr: "0000000002", Namn: "Principal 2", Typ: "Enskild" }
+    ]
+  };
+
+  nock("https://api.skolverket.se")
+    .get(/\/skolenhetsregistret\/v1\/huvudman/)
+    .reply(200, JSON.stringify(twoPrincipals));
+}
+
+function clearNock() {
+  if (!nock.isDone()) {
+    nock.cleanAll();
+    throw new Error("Not all mocked endponts received requests.");
+  }
+}

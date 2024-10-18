@@ -4,7 +4,7 @@ interface Dictionary {
 }
 //Principals
 interface Principal {
-  PerOrgNr: string;
+  PeOrgNr: string;
   Namn: string;
   Typ: string;
 }
