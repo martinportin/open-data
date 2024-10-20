@@ -15,11 +15,11 @@ describe("principals class", () => {
     principals = new Principals(principalsRecord);
   });
 
-  it("should return all principals", () => {
-    expect(principals.principals).toHaveLength(2);
+  it("should return the date and time of extract in the correct format", () => {
+    expect(principals.dateTimeOfExtract).toEqual("01:38:40 2024-08-20");
   });
 
-  it("should return the correct number of principals", () => {
-    expect(principals.numberOfPrincipals()).toBe(2);
+  it("should return all principals", () => {
+    expect(principals.principals).toHaveLength(2);
   });
 });
