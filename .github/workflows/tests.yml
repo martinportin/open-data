@@ -6,6 +6,8 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      TZ: "Europe/Stockholm"
 
     steps:
       - name: Checkout repository
