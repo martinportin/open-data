@@ -13,7 +13,21 @@ export default function PrincipalsPageContent({
 }>): JSX.Element {
   const [searchInput, setSearchInput] = useState("");
   const [publicCheckboxIsChecked, setPublicCheckboxIsChecked] = useState(true);
+  const [
+    municipalAssociationCheckboxIsChecked,
+    setMunicpalAssociationCheckboxIsChecked
+  ] = useState(true);
+  const [regionalCheckboxIsChecked, setRegionalCheckboxIsCheked] =
+    useState(true);
   const [privateCheckboxIsChecked, setPrivateCheckoboxIsChecked] =
+    useState(true);
+  const [samiSchoolCheckboxIsChecked, setSamiSchoolCheckboxIsChecked] =
+    useState(true);
+  const [
+    nationalAgencyForEducationIsChecked,
+    setNationalAgencyForEducationIsChecked
+  ] = useState(true);
+  const [specialSchoolCheckboxIsChecked, setSpecialScoolCheckboxIsChecked] =
     useState(true);
 
   const swedishDictionary = {
@@ -22,7 +36,12 @@ export default function PrincipalsPageContent({
     name: "Namn",
     type: "Typ",
     public: "Kommunal",
+    municipalAssociation: "Kommunalförbund",
+    regional: "Region",
     private: "Enskild",
+    samiSchool: "Sameskolan",
+    nationalAgencyForEducation: "Skolverket",
+    specialSchool: "Specialskola",
     search: "Sök"
   };
 
@@ -33,25 +52,60 @@ export default function PrincipalsPageContent({
   }
 
   function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if (event.target.id === "public") {
+    const checkboxId = event.target.id;
+    if (checkboxId === "public") {
       setPublicCheckboxIsChecked(!publicCheckboxIsChecked);
-    } else if (event.target.id === "private") {
+    } else if (checkboxId === "municipalAssociation") {
+      setMunicpalAssociationCheckboxIsChecked(
+        !municipalAssociationCheckboxIsChecked
+      );
+    } else if (checkboxId === "regional") {
+      setRegionalCheckboxIsCheked(!regionalCheckboxIsChecked);
+    } else if (checkboxId === "private") {
       setPrivateCheckoboxIsChecked(!privateCheckboxIsChecked);
+    } else if (checkboxId === "samiSchool") {
+      setSamiSchoolCheckboxIsChecked(!samiSchoolCheckboxIsChecked);
+    } else if (checkboxId === "nationalAgencyForEducation") {
+      setNationalAgencyForEducationIsChecked(
+        !nationalAgencyForEducationIsChecked
+      );
+    } else if (checkboxId === "specialSchool") {
+      setSpecialScoolCheckboxIsChecked(!specialSchoolCheckboxIsChecked);
     }
   }
 
   function filteredPrincipals() {
     const PUBLIC = "Kommunal";
     const PRIVATE = "Enskild";
-    if (!publicCheckboxIsChecked && !privateCheckboxIsChecked) {
+    const MUNICIPAL_ASSOCIATION = "Kommunalförbund";
+    const REGIONAL = "Region";
+    const SAMI_SCHOOL = "Sameskolan";
+    const NATIONAL_AGENCY_FOR_EDUCATION = "Skolverket";
+    const SPECIAL_SCHOOL = "Specialskola";
+    if (
+      !publicCheckboxIsChecked &&
+      !municipalAssociationCheckboxIsChecked &&
+      !regionalCheckboxIsChecked &&
+      !privateCheckboxIsChecked &&
+      !samiSchoolCheckboxIsChecked &&
+      !nationalAgencyForEducationIsChecked &&
+      !specialSchoolCheckboxIsChecked
+    ) {
       return [];
     }
     return principals.principals.filter(
-      (principal) =>
+      (principal: Principal) =>
         (principal.PeOrgNr.includes(searchInput) ||
           principal.Namn.includes(searchInput)) &&
-        ((principal.Typ === PUBLIC) === publicCheckboxIsChecked ||
-          (principal.Typ === PRIVATE) === privateCheckboxIsChecked)
+        ((principal.Typ === PUBLIC && publicCheckboxIsChecked) ||
+          (principal.Typ === MUNICIPAL_ASSOCIATION &&
+            municipalAssociationCheckboxIsChecked) ||
+          (principal.Typ === REGIONAL && regionalCheckboxIsChecked) ||
+          (principal.Typ === PRIVATE && privateCheckboxIsChecked) ||
+          (principal.Typ === SAMI_SCHOOL && samiSchoolCheckboxIsChecked) ||
+          (principal.Typ === NATIONAL_AGENCY_FOR_EDUCATION &&
+            nationalAgencyForEducationIsChecked) ||
+          (principal.Typ === SPECIAL_SCHOOL && specialSchoolCheckboxIsChecked))
     );
   }
   return (
@@ -65,7 +119,12 @@ export default function PrincipalsPageContent({
         searchInput={searchInput}
         onInputChange={handleInputChange}
         publicChecked={publicCheckboxIsChecked}
+        municipalAssociationChecked={municipalAssociationCheckboxIsChecked}
+        regionalChecked={regionalCheckboxIsChecked}
         privateChecked={privateCheckboxIsChecked}
+        samiSchoolChecked={samiSchoolCheckboxIsChecked}
+        nationalAgencyForEducationChecked={nationalAgencyForEducationIsChecked}
+        specialSchoolChecked={specialSchoolCheckboxIsChecked}
         onCheckboxChange={handleCheckboxChange}
       />
       <PrincipalsTable
