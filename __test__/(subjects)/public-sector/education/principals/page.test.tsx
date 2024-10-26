@@ -16,7 +16,7 @@ describe("principals page", () => {
     it("should display the principals header correctly on initial load", async () => {
       const principalsPage = await PrincipalsPage();
       const { getByRole } = render(principalsPage);
-      expect(getByRole("heading", { name: /Antal \(5\)/i }));
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
     });
 
     it("should display the principals header correctly when typing in the search text input", async () => {
@@ -26,22 +26,23 @@ describe("principals page", () => {
       const searchInputField: HTMLInputElement = getByLabelText(
         /Sök/i
       ) as HTMLInputElement;
-      await userEvent.type(searchInputField, "Principal 1");
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
+      await userEvent.type(searchInputField, "Principal 2");
       expect(getByRole("heading", { name: /Antal \(1\)/i }));
       await userEvent.clear(searchInputField);
-      expect(getByRole("heading", { name: /Antal \(5\)/i }));
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
     });
 
     it("should display the principals header correctly when checking and unchecking the public checkbox", async () => {
       const principalsPage = await PrincipalsPage();
       const { getByRole } = render(principalsPage);
-      const publicCheckbox = getByRole("checkbox", { name: /Kommunal/i });
+      const publicCheckbox = getByRole("checkbox", { name: /Kommunal:$/ });
 
       await userEvent.click(publicCheckbox);
-      expect(getByRole("heading", { name: /Antal \(2\)/i }));
+      expect(getByRole("heading", { name: /Antal \(10\)/i }));
 
       await userEvent.click(publicCheckbox);
-      expect(getByRole("heading", { name: /Antal \(5\)/i }));
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
     });
 
     it("should display the principals header correctly when checking and unchecking the private checkbox", async () => {
@@ -50,10 +51,10 @@ describe("principals page", () => {
       const publicCheckbox = getByRole("checkbox", { name: /Enskild/i });
 
       await userEvent.click(publicCheckbox);
-      expect(getByRole("heading", { name: /Antal \(3\)/i }));
+      expect(getByRole("heading", { name: /Antal \(11\)/i }));
 
       await userEvent.click(publicCheckbox);
-      expect(getByRole("heading", { name: /Antal \(5\)/i }));
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
     });
   });
 
@@ -63,7 +64,7 @@ describe("principals page", () => {
       const { getByRole } = render(principalsPage);
 
       expect(getByRole("textbox", { name: /Sök/i }));
-      expect(getByRole("checkbox", { name: /Kommunal/i }));
+      expect(getByRole("checkbox", { name: /Kommunal:$/ }));
       expect(getByRole("checkbox", { name: /Enskild/i }));
     });
 
@@ -80,7 +81,7 @@ describe("principals page", () => {
     });
 
     it("should handle checkbox actions", async () => {
-      const checkboxLabels = [/Kommunal/i, /Enskild/i];
+      const checkboxLabels = [/Kommunal:$/, /Enskild/i];
 
       const principalsPage = await PrincipalsPage();
       const { getByLabelText } = render(principalsPage);
@@ -116,20 +117,38 @@ describe("principals page", () => {
         /0000000002/i,
         /0000000003/i,
         /0000000004/i,
-        /0000000005/i
+        /0000000005/i,
+        /0000000006/i,
+        /0000000007/i,
+        /0000000008/i,
+        /0000000009/i,
+        /0000000010/i,
+        /0000000011/i,
+        /0000000012/i,
+        /0000000013/i,
+        /0000000014/i
       ];
       const names = [
-        /Principal 1/i,
+        /Principal 1$/i,
         /Principal 2/i,
         /Principal 3/i,
         /Principal 4/i,
-        /Principal 5/i
+        /Principal 5/i,
+        /Principal 6/i,
+        /Principal 7/i,
+        /Principal 8/i,
+        /Principal 9/i,
+        /Principal 10/i,
+        /Principal 11/i,
+        /Principal 12/i,
+        /Principal 13/i,
+        /Principal 14/i
       ];
 
       const principalsPage = await PrincipalsPage();
       const { getAllByRole, getByRole } = render(principalsPage);
 
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
 
       organizationNumbers.forEach((organizationNumber) => {
         expect(getByRole("columnheader", { name: organizationNumber }));
@@ -139,30 +158,30 @@ describe("principals page", () => {
         expect(getByRole("cell", { name }));
       });
 
-      expect(getAllByRole("cell", { name: /Kommunal/i })).toHaveLength(3);
-      expect(getAllByRole("cell", { name: /Enskild/i })).toHaveLength(2);
+      expect(getAllByRole("cell", { name: /Kommunal$/i })).toHaveLength(4);
+      expect(getAllByRole("cell", { name: /Enskild/i })).toHaveLength(3);
     });
 
     it("should respond to search input filtering", async () => {
       const principalsPage = await PrincipalsPage();
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
 
       const searchInputField: HTMLInputElement = getByLabelText(
         /Sök/i
       ) as HTMLInputElement;
-      await userEvent.type(searchInputField, "Principal 1");
+      await userEvent.type(searchInputField, "Principal 2");
       expect(getAllByRole("row")).toHaveLength(2);
 
       await userEvent.clear(searchInputField);
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
 
-      await userEvent.type(searchInputField, "000000001");
+      await userEvent.type(searchInputField, "000000002");
       expect(getAllByRole("row")).toHaveLength(2);
 
       await userEvent.clear(searchInputField);
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
     });
 
     it("should respond to public checkbox filtering", async () => {
@@ -170,16 +189,16 @@ describe("principals page", () => {
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       const publicCheckbox: HTMLInputElement = getByLabelText(
-        /Kommunal/i
+        /Kommunal:$/i
       ) as HTMLInputElement;
 
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
 
       await userEvent.click(publicCheckbox);
-      expect(getAllByRole("row")).toHaveLength(3);
+      expect(getAllByRole("row")).toHaveLength(11);
 
       await userEvent.click(publicCheckbox);
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
     });
 
     it("should respond to private checkbox filtering", async () => {
@@ -190,13 +209,45 @@ describe("principals page", () => {
         /Enskild/i
       ) as HTMLInputElement;
 
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
 
       await userEvent.click(publicCheckbox);
-      expect(getAllByRole("row")).toHaveLength(4);
+      expect(getAllByRole("row")).toHaveLength(12);
 
       await userEvent.click(publicCheckbox);
-      expect(getAllByRole("row")).toHaveLength(6);
+      expect(getAllByRole("row")).toHaveLength(15);
+    });
+
+    it("should respond to municipal association checkbox filtering", async () => {
+      const principalsPage = await PrincipalsPage();
+      const { getAllByRole, getByLabelText } = render(principalsPage);
+
+      const municipalAssociationCheckbox: HTMLInputElement = getByLabelText(
+        /Kommunalförbund/i
+      ) as HTMLInputElement;
+      expect(getAllByRole("row")).toHaveLength(15);
+
+      await userEvent.click(municipalAssociationCheckbox);
+      expect(getAllByRole("row")).toHaveLength(14);
+
+      await userEvent.click(municipalAssociationCheckbox);
+      expect(getAllByRole("row")).toHaveLength(15);
+    });
+
+    it("should respond to sami school checkbox filtering", async () => {
+      const principalsPage = await PrincipalsPage();
+      const { getAllByRole, getByLabelText } = render(principalsPage);
+
+      const municipalAssociationCheckbox: HTMLInputElement = getByLabelText(
+        /Sameskolan/i
+      ) as HTMLInputElement;
+      expect(getAllByRole("row")).toHaveLength(15);
+
+      await userEvent.click(municipalAssociationCheckbox);
+      expect(getAllByRole("row")).toHaveLength(14);
+
+      await userEvent.click(municipalAssociationCheckbox);
+      expect(getAllByRole("row")).toHaveLength(15);
     });
   });
 });
@@ -210,7 +261,16 @@ function setUpNock() {
       { PeOrgNr: "0000000002", Namn: "Principal 2", Typ: "Enskild" },
       { PeOrgNr: "0000000003", Namn: "Principal 3", Typ: "Kommunal" },
       { PeOrgNr: "0000000004", Namn: "Principal 4", Typ: "Kommunal" },
-      { PeOrgNr: "0000000005", Namn: "Principal 5", Typ: "Enskild" }
+      { PeOrgNr: "0000000005", Namn: "Principal 5", Typ: "Enskild" },
+      { PeOrgNr: "0000000006", Namn: "Principal 6", Typ: "Kommunalförbund" },
+      { PeOrgNr: "0000000007", Namn: "Principal 7", Typ: "Region" },
+      { PeOrgNr: "0000000008", Namn: "Principal 8", Typ: "Specialskola" },
+      { PeOrgNr: "0000000009", Namn: "Principal 9", Typ: "Region" },
+      { PeOrgNr: "0000000010", Namn: "Principal 10", Typ: "Region" },
+      { PeOrgNr: "0000000011", Namn: "Principal 11", Typ: "Kommunal" },
+      { PeOrgNr: "0000000012", Namn: "Principal 12", Typ: "Skolverket" },
+      { PeOrgNr: "0000000013", Namn: "Principal 13", Typ: "Sameskolan" },
+      { PeOrgNr: "0000000014", Namn: "Principal 14", Typ: "Enskild" }
     ]
   };
 
