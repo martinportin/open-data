@@ -38,6 +38,8 @@ describe("principals page", () => {
       const { getByRole } = render(principalsPage);
       const publicCheckbox = getByRole("checkbox", { name: /Kommunal:$/ });
 
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
+
       await userEvent.click(publicCheckbox);
       expect(getByRole("heading", { name: /Antal \(10\)/i }));
 
@@ -50,8 +52,24 @@ describe("principals page", () => {
       const { getByRole } = render(principalsPage);
       const publicCheckbox = getByRole("checkbox", { name: /Enskild/i });
 
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
+
       await userEvent.click(publicCheckbox);
       expect(getByRole("heading", { name: /Antal \(11\)/i }));
+
+      await userEvent.click(publicCheckbox);
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
+    });
+
+    it("should display the principals header correctly when checking and unchecking the special school checkbox", async () => {
+      const principalsPage = await PrincipalsPage();
+      const { getByRole } = render(principalsPage);
+      const publicCheckbox = getByRole("checkbox", { name: /Specialskola/i });
+
+      expect(getByRole("heading", { name: /Antal \(14\)/i }));
+
+      await userEvent.click(publicCheckbox);
+      expect(getByRole("heading", { name: /Antal \(13\)/i }));
 
       await userEvent.click(publicCheckbox);
       expect(getByRole("heading", { name: /Antal \(14\)/i }));
@@ -59,13 +77,18 @@ describe("principals page", () => {
   });
 
   describe("principals table toolbar", () => {
-    it("should display a text input and two checkoboxes", async () => {
+    it("should display a text input and seven checkboxes", async () => {
       const principalsPage = await PrincipalsPage();
       const { getByRole } = render(principalsPage);
 
-      expect(getByRole("textbox", { name: /Sök/i }));
-      expect(getByRole("checkbox", { name: /Kommunal:$/ }));
-      expect(getByRole("checkbox", { name: /Enskild/i }));
+      expect(getByRole("textbox", { name: /Sök:/i }));
+      expect(getByRole("checkbox", { name: /Kommunal:/ }));
+      expect(getByRole("checkbox", { name: /Enskild:/i }));
+      expect(getByRole("checkbox", { name: /Region:/i }));
+      expect(getByRole("checkbox", { name: /Sameskolan:/i }));
+      expect(getByRole("checkbox", { name: /Specialskola:/i }));
+      expect(getByRole("checkbox", { name: /Skolverket:/i }));
+      expect(getByRole("checkbox", { name: /Kommunalförbund:/i }));
     });
 
     it("should display text in search input when typing", async () => {
@@ -73,7 +96,7 @@ describe("principals page", () => {
       const { getByLabelText } = render(principalsPage);
 
       const searchInputField: HTMLInputElement = getByLabelText(
-        /Sök/i
+        /Sök:/i
       ) as HTMLInputElement;
       const input = "Principal 1";
       await userEvent.type(searchInputField, input);
@@ -81,7 +104,15 @@ describe("principals page", () => {
     });
 
     it("should handle checkbox actions", async () => {
-      const checkboxLabels = [/Kommunal:$/, /Enskild/i];
+      const checkboxLabels = [
+        /Kommunal:/,
+        /Enskild:/i,
+        /Region:/i,
+        /Kommunalförbund:/i,
+        /Sameskolan:/i,
+        /Specialskola:/i,
+        /Skolverket:/
+      ];
 
       const principalsPage = await PrincipalsPage();
       const { getByLabelText } = render(principalsPage);
@@ -111,7 +142,7 @@ describe("principals page", () => {
       });
     });
 
-    it("should display five table rows", async () => {
+    it("should display 14 table rows", async () => {
       const organizationNumbers = [
         /0000000001/i,
         /0000000002/i,
@@ -160,6 +191,13 @@ describe("principals page", () => {
 
       expect(getAllByRole("cell", { name: /Kommunal$/i })).toHaveLength(4);
       expect(getAllByRole("cell", { name: /Enskild/i })).toHaveLength(3);
+      expect(getAllByRole("cell", { name: /Kommunalförbund/i })).toHaveLength(
+        1
+      );
+      expect(getAllByRole("cell", { name: /Region/i })).toHaveLength(3);
+      expect(getAllByRole("cell", { name: /Specialskola/i })).toHaveLength(1);
+      expect(getAllByRole("cell", { name: /Skolverket/i })).toHaveLength(1);
+      expect(getAllByRole("cell", { name: /Sameskolan/i })).toHaveLength(1);
     });
 
     it("should respond to search input filtering", async () => {
@@ -189,7 +227,7 @@ describe("principals page", () => {
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       const publicCheckbox: HTMLInputElement = getByLabelText(
-        /Kommunal:$/i
+        /Kommunal:/i
       ) as HTMLInputElement;
 
       expect(getAllByRole("row")).toHaveLength(15);

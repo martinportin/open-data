@@ -44,7 +44,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.municipalAssociation}
+          {dictionary.municipalAssociation}:
           <input
             id="municipalAssociation"
             type="checkbox"
@@ -55,7 +55,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.regional}
+          {dictionary.regional}:
           <input
             id="regional"
             type="checkbox"
@@ -77,7 +77,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.samiSchool}
+          {dictionary.samiSchool}:
           <input
             id="samiSchool"
             type="checkbox"
@@ -88,7 +88,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.nationalAgencyForEducation}
+          {dictionary.nationalAgencyForEducation}:
           <input
             id="nationalAgencyForEducation"
             type="checkbox"
@@ -99,7 +99,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.specialSchool}
+          {dictionary.specialSchool}:
           <input
             id="specialSchool"
             type="checkbox"
