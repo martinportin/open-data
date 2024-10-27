@@ -82,6 +82,7 @@ export default function PrincipalsPageContent({
     const SAMI_SCHOOL = "Sameskolan";
     const NATIONAL_AGENCY_FOR_EDUCATION = "Skolverket";
     const SPECIAL_SCHOOL = "Specialskola";
+
     if (
       !publicCheckboxIsChecked &&
       !municipalAssociationCheckboxIsChecked &&
@@ -93,10 +94,11 @@ export default function PrincipalsPageContent({
     ) {
       return [];
     }
+
     return principals.principals.filter(
       (principal: Principal) =>
         (principal.PeOrgNr.includes(searchInput) ||
-          principal.Namn.includes(searchInput)) &&
+          principal.Namn.toLowerCase().includes(searchInput.toLowerCase())) &&
         ((principal.Typ === PUBLIC && publicCheckboxIsChecked) ||
           (principal.Typ === MUNICIPAL_ASSOCIATION &&
             municipalAssociationCheckboxIsChecked) ||

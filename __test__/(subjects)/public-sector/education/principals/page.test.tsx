@@ -200,7 +200,23 @@ describe("principals page", () => {
       expect(getAllByRole("cell", { name: /Sameskolan/i })).toHaveLength(1);
     });
 
-    it("should respond to search input filtering", async () => {
+    it("should respond to search input organization number filtering", async () => {
+      const principalsPage = await PrincipalsPage();
+      const { getAllByRole, getByLabelText } = render(principalsPage);
+
+      expect(getAllByRole("row")).toHaveLength(15);
+
+      const searchInputField: HTMLInputElement = getByLabelText(
+        /Sök/i
+      ) as HTMLInputElement;
+      await userEvent.type(searchInputField, "000000002");
+      expect(getAllByRole("row")).toHaveLength(2);
+
+      await userEvent.clear(searchInputField);
+      expect(getAllByRole("row")).toHaveLength(15);
+    });
+
+    it("should respond to search input name filtering", async () => {
       const principalsPage = await PrincipalsPage();
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
@@ -215,7 +231,7 @@ describe("principals page", () => {
       await userEvent.clear(searchInputField);
       expect(getAllByRole("row")).toHaveLength(15);
 
-      await userEvent.type(searchInputField, "000000002");
+      await userEvent.type(searchInputField, "principal 2");
       expect(getAllByRole("row")).toHaveLength(2);
 
       await userEvent.clear(searchInputField);
