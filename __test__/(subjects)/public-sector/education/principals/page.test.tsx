@@ -74,6 +74,12 @@ describe("principals page", () => {
       await userEvent.click(publicCheckbox);
       expect(getByRole("heading", { name: /Antal \(14\)/i }));
     });
+
+    it("should display time and date of extract", async () => {
+      const principalsPage = await PrincipalsPage();
+      const { getByText } = render(principalsPage);
+      expect(getByText("01:00:03 2024-10-13"));
+    });
   });
 
   describe("principals table toolbar", () => {
