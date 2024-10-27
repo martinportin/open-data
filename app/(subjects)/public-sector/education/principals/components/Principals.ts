@@ -10,7 +10,12 @@ export default class Principals {
   get dateTimeOfExtract() {
     const dateTimeOfExtract = new Date(this._date);
     const hours = dateTimeOfExtract.getHours().toString().padStart(2, "0");
-    const time = `${hours}:${dateTimeOfExtract.getUTCMinutes()}:${dateTimeOfExtract.getSeconds()}`;
+    const minutes = dateTimeOfExtract
+      .getUTCMinutes()
+      .toString()
+      .padStart(2, "0");
+    const seconds = dateTimeOfExtract.getSeconds().toString().padStart(2, "0");
+    const time = `${hours}:${minutes}:${seconds}`;
     const month = (dateTimeOfExtract.getUTCMonth() + 1)
       .toString()
       .padStart(2, "0");

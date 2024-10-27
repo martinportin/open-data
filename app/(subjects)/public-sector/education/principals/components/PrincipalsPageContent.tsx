@@ -5,6 +5,7 @@ import PrincipalsTableCounter from "./PrincipalsTableCounter";
 import Principals from "./Principals";
 import PrincipalsTableToolbar from "./PrincipalsTableToolbar";
 import PrincipalsTable from "./PrincipalsTable";
+import PrincipalTableDateOfExtract from "./PrincipalTableDateOfExtract";
 
 export default function PrincipalsPageContent({
   principalsRecord
@@ -115,6 +116,9 @@ export default function PrincipalsPageContent({
       <PrincipalsTableCounter
         dictionary={swedishDictionary}
         principals={filteredPrincipals()}
+      />
+      <PrincipalTableDateOfExtract
+        dateOfExtract={principals.dateTimeOfExtract}
       />
       <PrincipalsTableToolbar
         dictionary={swedishDictionary}
