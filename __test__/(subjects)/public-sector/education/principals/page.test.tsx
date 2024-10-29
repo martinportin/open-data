@@ -1,4 +1,4 @@
-import PrincipalsPage from "@/app/(subjects)/public-sector/education/principals/page";
+import PrincipalsPage from "@/app/[lang]/(subjects)/public-sector/education/principals/page";
 import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import nock from "nock";
