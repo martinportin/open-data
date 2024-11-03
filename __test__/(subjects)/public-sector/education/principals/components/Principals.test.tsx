@@ -1,4 +1,4 @@
-import Principals from "@/app/(subjects)/public-sector/education/principals/components/Principals";
+import Principals from "@/app/[lang]/(subjects)/public-sector/education/principals/components/Principals";
 
 describe("principals class", () => {
   let principals: Principals;
