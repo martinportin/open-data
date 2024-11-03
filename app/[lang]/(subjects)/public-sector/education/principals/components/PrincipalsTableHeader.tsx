@@ -6,9 +6,9 @@ export default function PrincipalsTableHeader({
   return (
     <thead>
       <tr>
-        <th>{dictionary.organizationNumber}</th>
-        <th>{dictionary.name}</th>
-        <th>{dictionary.type}</th>
+        <th>{dictionary.principals.organizationNumber}</th>
+        <th>{dictionary.principals.name}</th>
+        <th>{dictionary.principals.type}</th>
       </tr>
     </thead>
   );

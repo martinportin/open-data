@@ -4,6 +4,9 @@ import userEvent from "@testing-library/user-event";
 import nock from "nock";
 
 describe("principals page", () => {
+  const parameters: Readonly<{ params: { lang: "se" | "en" } }> = {
+    params: { lang: "se" }
+  };
   beforeEach(() => {
     setUpNock();
   });
@@ -14,13 +17,13 @@ describe("principals page", () => {
 
   describe("principals page header", () => {
     it("should display the principals header correctly on initial load", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByRole } = render(principalsPage);
       expect(getByRole("heading", { name: /Antal \(14\)/i }));
     });
 
     it("should display the principals header correctly when typing in the search text input", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByLabelText, getByRole } = render(principalsPage);
 
       const searchInputField: HTMLInputElement = getByLabelText(
@@ -34,7 +37,7 @@ describe("principals page", () => {
     });
 
     it("should display the principals header correctly when checking and unchecking the public checkbox", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByRole } = render(principalsPage);
       const publicCheckbox = getByRole("checkbox", { name: /Kommunal:$/ });
 
@@ -48,7 +51,7 @@ describe("principals page", () => {
     });
 
     it("should display the principals header correctly when checking and unchecking the private checkbox", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByRole } = render(principalsPage);
       const publicCheckbox = getByRole("checkbox", { name: /Enskild/i });
 
@@ -62,7 +65,7 @@ describe("principals page", () => {
     });
 
     it("should display the principals header correctly when checking and unchecking the special school checkbox", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByRole } = render(principalsPage);
       const publicCheckbox = getByRole("checkbox", { name: /Specialskola/i });
 
@@ -76,7 +79,7 @@ describe("principals page", () => {
     });
 
     it("should display time and date of extract", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByText } = render(principalsPage);
       expect(getByText("01:00:03 2024-10-13"));
     });
@@ -84,7 +87,7 @@ describe("principals page", () => {
 
   describe("principals table toolbar", () => {
     it("should display a text input and seven checkboxes", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByRole } = render(principalsPage);
 
       expect(getByRole("textbox", { name: /Sök:/i }));
@@ -98,7 +101,7 @@ describe("principals page", () => {
     });
 
     it("should display text in search input when typing", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByLabelText } = render(principalsPage);
 
       const searchInputField: HTMLInputElement = getByLabelText(
@@ -120,7 +123,7 @@ describe("principals page", () => {
         /Skolverket:/
       ];
 
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByLabelText } = render(principalsPage);
 
       checkboxLabels.forEach(async (checkboxLabel) => {
@@ -140,7 +143,7 @@ describe("principals page", () => {
     it("should display table header with three column headers", async () => {
       const headers = [/Organisationsnummer/i, /Namn/i, /Typ/i];
 
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getByRole } = render(principalsPage);
 
       headers.forEach((header) => {
@@ -182,7 +185,7 @@ describe("principals page", () => {
         /Principal 14/i
       ];
 
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByRole } = render(principalsPage);
 
       expect(getAllByRole("row")).toHaveLength(15);
@@ -207,7 +210,7 @@ describe("principals page", () => {
     });
 
     it("should respond to search input organization number filtering", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       expect(getAllByRole("row")).toHaveLength(15);
@@ -223,7 +226,7 @@ describe("principals page", () => {
     });
 
     it("should respond to search input name filtering", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       expect(getAllByRole("row")).toHaveLength(15);
@@ -245,7 +248,7 @@ describe("principals page", () => {
     });
 
     it("should respond to public checkbox filtering", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       const publicCheckbox: HTMLInputElement = getByLabelText(
@@ -262,7 +265,7 @@ describe("principals page", () => {
     });
 
     it("should respond to private checkbox filtering", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       const publicCheckbox: HTMLInputElement = getByLabelText(
@@ -279,7 +282,7 @@ describe("principals page", () => {
     });
 
     it("should respond to municipal association checkbox filtering", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       const municipalAssociationCheckbox: HTMLInputElement = getByLabelText(
@@ -295,7 +298,7 @@ describe("principals page", () => {
     });
 
     it("should respond to sami school checkbox filtering", async () => {
-      const principalsPage = await PrincipalsPage();
+      const principalsPage = await PrincipalsPage(parameters);
       const { getAllByRole, getByLabelText } = render(principalsPage);
 
       const municipalAssociationCheckbox: HTMLInputElement = getByLabelText(

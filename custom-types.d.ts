@@ -1,6 +1,6 @@
 //Dictionary
 interface Dictionary {
-  [key: string]: string;
+  [key: string]: { [key: string]: string };
 }
 //Principals
 interface Principal {

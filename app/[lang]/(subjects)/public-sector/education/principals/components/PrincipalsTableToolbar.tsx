@@ -27,13 +27,13 @@ export default function PrincipalsTableToolbar({
     <menu>
       <li>
         <label>
-          {dictionary.search}:
+          {dictionary.common.search}:
           <input id="search" value={searchInput} onChange={onInputChange} />
         </label>
       </li>
       <li>
         <label>
-          {dictionary.public}:
+          {dictionary.principals.public}:
           <input
             id="public"
             type="checkbox"
@@ -44,7 +44,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.municipalAssociation}:
+          {dictionary.principals.municipalAssociation}:
           <input
             id="municipalAssociation"
             type="checkbox"
@@ -55,7 +55,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.regional}:
+          {dictionary.principals.regional}:
           <input
             id="regional"
             type="checkbox"
@@ -66,7 +66,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.private}:
+          {dictionary.principals.private}:
           <input
             id="private"
             type="checkbox"
@@ -77,7 +77,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.samiSchool}:
+          {dictionary.principals.samiSchool}:
           <input
             id="samiSchool"
             type="checkbox"
@@ -88,7 +88,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.nationalAgencyForEducation}:
+          {dictionary.principals.nationalAgencyForEducation}:
           <input
             id="nationalAgencyForEducation"
             type="checkbox"
@@ -99,7 +99,7 @@ export default function PrincipalsTableToolbar({
       </li>
       <li>
         <label>
-          {dictionary.specialSchool}:
+          {dictionary.principals.specialSchool}:
           <input
             id="specialSchool"
             type="checkbox"

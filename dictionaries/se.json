@@ -1,0 +1,18 @@
+{
+    "common": {
+        "search": "Sök"
+    },
+    "principals": {
+        "municipalAssociation": "Kommunalförbund",
+        "nationalAgencyForEducation": "Skolverket",
+        "numberOf": "Antal",
+        "organizationNumber": "Organisationsnummer",
+        "private": "Enskild",
+        "public": "Kommunal",
+        "name": "Namn",
+        "regional": "Region",
+        "samiSchool": "Sameskolan",
+        "specialSchool": "Specialskola",
+        "type": "Typ"
+    }
+}

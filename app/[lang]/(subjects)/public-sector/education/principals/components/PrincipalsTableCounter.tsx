@@ -7,7 +7,7 @@ export default function PrincipalsTableCounter({
 }>): JSX.Element {
   return (
     <h1>
-      {dictionary.numberOf} ({principals.length})
+      {dictionary.principals.numberOf} ({principals.length})
     </h1>
   );
 }

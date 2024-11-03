@@ -1,0 +1,18 @@
+{
+    "common": {
+        "search": "Search"
+    },
+    "principals": {
+        "municipalAssociation": "Municipal Association",
+        "nationalAgencyForEducation": "National Agency For Education",
+        "numberOf": "Number of principals",
+        "organizationNumber": "Organization number",
+        "private": "Private",
+        "public": "Public",
+        "name": "Name",
+        "regional": "Regional",
+        "samiSchool": "Sami school",
+        "specialSchool": "National Agency for Special Needs Education and Schools",
+        "type": "Type"
+    }
+}

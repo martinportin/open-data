@@ -1,7 +1,19 @@
+import { Locale } from "@/i18n-config";
 import PrincipalsPageContent from "./components/PrincipalsPageContent";
 import { getPrincipals } from "./services/SNAE";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
-export default async function PrincipalsPage() {
-  const principalsRecord: PrincipalsRecord = await getPrincipals();
-  return <PrincipalsPageContent principalsRecord={principalsRecord} />;
+export default async function PrincipalsPage({
+  params: { lang }
+}: Readonly<{ params: { lang: Locale } }>) {
+  const [dictionary, principalsRecord] = await Promise.all([
+    getDictionary(lang),
+    getPrincipals()
+  ]);
+  return (
+    <PrincipalsPageContent
+      dictionary={dictionary}
+      principalsRecord={principalsRecord}
+    />
+  );
 }

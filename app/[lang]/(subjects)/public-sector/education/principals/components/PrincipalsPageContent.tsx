@@ -6,10 +6,13 @@ import Principals from "./Principals";
 import PrincipalsTableToolbar from "./PrincipalsTableToolbar";
 import PrincipalsTable from "./PrincipalsTable";
 import PrincipalTableDateOfExtract from "./PrincipalTableDateOfExtract";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
 export default function PrincipalsPageContent({
+  dictionary,
   principalsRecord
 }: Readonly<{
+  dictionary: Awaited<ReturnType<typeof getDictionary>>;
   principalsRecord: PrincipalsRecord;
 }>): JSX.Element {
   const [searchInput, setSearchInput] = useState("");
@@ -30,21 +33,6 @@ export default function PrincipalsPageContent({
   ] = useState(true);
   const [specialSchoolCheckboxIsChecked, setSpecialScoolCheckboxIsChecked] =
     useState(true);
-
-  const swedishDictionary = {
-    numberOf: "Antal",
-    organizationNumber: "Organisationsnummer",
-    name: "Namn",
-    type: "Typ",
-    public: "Kommunal",
-    municipalAssociation: "Kommunalförbund",
-    regional: "Region",
-    private: "Enskild",
-    samiSchool: "Sameskolan",
-    nationalAgencyForEducation: "Skolverket",
-    specialSchool: "Specialskola",
-    search: "Sök"
-  };
 
   const principals: Principals = new Principals(principalsRecord);
 
@@ -114,14 +102,14 @@ export default function PrincipalsPageContent({
   return (
     <>
       <PrincipalsTableCounter
-        dictionary={swedishDictionary}
+        dictionary={dictionary}
         principals={filteredPrincipals()}
       />
       <PrincipalTableDateOfExtract
         dateOfExtract={principals.dateTimeOfExtract}
       />
       <PrincipalsTableToolbar
-        dictionary={swedishDictionary}
+        dictionary={dictionary}
         searchInput={searchInput}
         onInputChange={handleInputChange}
         publicChecked={publicCheckboxIsChecked}
@@ -134,7 +122,7 @@ export default function PrincipalsPageContent({
         onCheckboxChange={handleCheckboxChange}
       />
       <PrincipalsTable
-        dictionary={swedishDictionary}
+        dictionary={dictionary}
         principals={filteredPrincipals()}
       />
     </>
