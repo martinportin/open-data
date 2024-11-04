@@ -19,7 +19,8 @@ export default class Principals {
     const month = (dateTimeOfExtract.getUTCMonth() + 1)
       .toString()
       .padStart(2, "0");
-    const date = `${dateTimeOfExtract.getFullYear()}-${month}-${dateTimeOfExtract.getDate()}`;
+    const day = dateTimeOfExtract.getDate().toString().padStart(2, "0");
+    const date = `${dateTimeOfExtract.getFullYear()}-${month}-${day}`;
     return `${time} ${date}`;
   }
 
