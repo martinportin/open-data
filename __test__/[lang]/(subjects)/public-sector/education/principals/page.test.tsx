@@ -4,8 +4,12 @@ import userEvent from "@testing-library/user-event";
 import nock from "nock";
 
 describe("principals page", () => {
-  const parameters: Readonly<{ params: { lang: "se" | "en" } }> = {
+  const swedishParameters: Readonly<{ params: { lang: "se" | "en" } }> = {
     params: { lang: "se" }
+  };
+
+  const englishParameters: Readonly<{ params: { lang: "se" | "en" } }> = {
+    params: { lang: "en" }
   };
 
   const user = userEvent.setup();
@@ -62,7 +66,7 @@ describe("principals page", () => {
 
   describe("header", () => {
     it("should display the correct number of principals when filtering", async () => {
-      const { getByRole } = await renderPrincipalsPage();
+      const { getByRole } = await renderPrincipalsPage(swedishParameters);
       expect(getByRole("heading", { name: /Antal \(7\)/i }));
 
       const searchInput = getByRole("textbox", { name: /Sök/i });
@@ -75,20 +79,33 @@ describe("principals page", () => {
   });
 
   describe("date and time of extract", () => {
-    it("should display the date and time of extract", async () => {
-      const { getByText } = await renderPrincipalsPage();
-      expect(getByText(/01:00:03 2024-10-13/, { selector: "time" }));
+    it("should display the date and time of extract in swedish", async () => {
+      const { getByText } = await renderPrincipalsPage(swedishParameters);
+      expect(
+        getByText(/Söndag 13 oktober 2024 kl. 01:00:03/, {
+          selector: "time"
+        })
+      );
+    });
+
+    it("shoudl display the date and time of extract in english", async () => {
+      const { getByText } = await renderPrincipalsPage(englishParameters);
+      expect(
+        getByText(/Sunday, October 13, 2024 at 1:00:03 AM/, {
+          selector: "time"
+        })
+      );
     });
   });
 
   describe("toolbar", () => {
     it("should display a search input field", async () => {
-      const { getByRole } = await renderPrincipalsPage();
+      const { getByRole } = await renderPrincipalsPage(swedishParameters);
       expect(getByRole("textbox", { name: /Sök/i }));
     });
 
     it("should display seven checkboxes", async () => {
-      const { getByRole } = await renderPrincipalsPage();
+      const { getByRole } = await renderPrincipalsPage(swedishParameters);
       swedishCheckboxLabels.forEach((label) =>
         expect(getByRole("checkbox", { name: label }))
       );
@@ -97,7 +114,7 @@ describe("principals page", () => {
 
   describe("table", () => {
     it("should display three column headers", async () => {
-      const { getAllByRole } = await renderPrincipalsPage();
+      const { getAllByRole } = await renderPrincipalsPage(swedishParameters);
       const rows = getAllByRole("row");
       const tableHeaderRow = rows[0];
       swedishColumnHeaders.forEach((header) =>
@@ -163,7 +180,9 @@ describe("principals page", () => {
 
     searchInputTestParameters.forEach((expectedNumberOfRows, input) => {
       it("should respond to search input filtering", async () => {
-        const { getAllByRole, getByRole } = await renderPrincipalsPage();
+        const { getAllByRole, getByRole } = await renderPrincipalsPage(
+          swedishParameters
+        );
         const rows = getAllByRole("row");
         const tableBodyRows = rows.slice(1);
         expect(tableBodyRows).toHaveLength(7);
@@ -192,7 +211,9 @@ describe("principals page", () => {
 
     checkboxTestParameters.forEach((expectedNumberOfRows, checkboxLabel) => {
       it("should respond to single checkbox filtering", async () => {
-        const { getAllByRole, getByRole } = await renderPrincipalsPage();
+        const { getAllByRole, getByRole } = await renderPrincipalsPage(
+          swedishParameters
+        );
         const rows = getAllByRole("row");
         const tableBodyRows = rows.slice(1);
         expect(tableBodyRows).toHaveLength(7);
@@ -211,7 +232,9 @@ describe("principals page", () => {
     });
 
     it("should respond to multiple checkboxFiltering", async () => {
-      const { getAllByRole, getByRole } = await renderPrincipalsPage();
+      const { getAllByRole, getByRole } = await renderPrincipalsPage(
+        swedishParameters
+      );
       const rows = getAllByRole("row");
       const tableBodyRows = rows.slice(1);
       expect(tableBodyRows).toHaveLength(7);
@@ -238,13 +261,15 @@ describe("principals page", () => {
     });
   });
 
-  async function renderPrincipalsPage() {
+  async function renderPrincipalsPage(
+    parameters: Readonly<{ params: { lang: "se" | "en" } }>
+  ) {
     const principalsPage = await PrincipalsPage(parameters);
     return render(principalsPage);
   }
 
   async function getTableRows() {
-    const { getAllByRole } = await renderPrincipalsPage();
+    const { getAllByRole } = await renderPrincipalsPage(swedishParameters);
     const rows = getAllByRole("row");
     return rows.slice(1);
   }
