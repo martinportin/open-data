@@ -51,24 +51,31 @@ export default function PrincipalsPageContent({
 
   function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
     const checkboxId = event.target.id;
-    if (checkboxId === "public") {
-      setPublicCheckboxIsChecked(!publicCheckboxIsChecked);
-    } else if (checkboxId === "municipalAssociation") {
-      setMunicpalAssociationCheckboxIsChecked(
-        !municipalAssociationCheckboxIsChecked
-      );
-    } else if (checkboxId === "regional") {
-      setRegionalCheckboxIsCheked(!regionalCheckboxIsChecked);
-    } else if (checkboxId === "private") {
-      setPrivateCheckoboxIsChecked(!privateCheckboxIsChecked);
-    } else if (checkboxId === "samiSchool") {
-      setSamiSchoolCheckboxIsChecked(!samiSchoolCheckboxIsChecked);
-    } else if (checkboxId === "nationalAgencyForEducation") {
-      setNationalAgencyForEducationIsChecked(
-        !nationalAgencyForEducationIsChecked
-      );
-    } else if (checkboxId === "specialSchool") {
-      setSpecialScoolCheckboxIsChecked(!specialSchoolCheckboxIsChecked);
+    switch (checkboxId) {
+      case "public":
+        setPublicCheckboxIsChecked(!publicCheckboxIsChecked);
+        break;
+      case "municipalAssociation":
+        setMunicpalAssociationCheckboxIsChecked(
+          !municipalAssociationCheckboxIsChecked
+        );
+        break;
+      case "regional":
+        setRegionalCheckboxIsCheked(!regionalCheckboxIsChecked);
+        break;
+      case "private":
+        setPrivateCheckoboxIsChecked(!privateCheckboxIsChecked);
+        break;
+      case "samiSchool":
+        setSamiSchoolCheckboxIsChecked(!samiSchoolCheckboxIsChecked);
+        break;
+      case "nationalAgencyForEducation":
+        setNationalAgencyForEducationIsChecked(
+          !nationalAgencyForEducationIsChecked
+        );
+        break;
+      case "specialSchool":
+        setSpecialScoolCheckboxIsChecked(!specialSchoolCheckboxIsChecked);
     }
   }
 
