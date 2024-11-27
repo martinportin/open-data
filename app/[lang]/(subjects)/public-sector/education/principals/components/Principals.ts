@@ -7,21 +7,21 @@ export default class Principals {
     this._principals = principalsRecord.Huvudman;
   }
 
-  get dateTimeOfExtract() {
-    const dateTimeOfExtract = new Date(this._date);
-    const hours = dateTimeOfExtract.getHours().toString().padStart(2, "0");
-    const minutes = dateTimeOfExtract
-      .getUTCMinutes()
-      .toString()
-      .padStart(2, "0");
-    const seconds = dateTimeOfExtract.getSeconds().toString().padStart(2, "0");
-    const time = `${hours}:${minutes}:${seconds}`;
-    const month = (dateTimeOfExtract.getUTCMonth() + 1)
-      .toString()
-      .padStart(2, "0");
-    const day = dateTimeOfExtract.getDate().toString().padStart(2, "0");
-    const date = `${dateTimeOfExtract.getFullYear()}-${month}-${day}`;
-    return `${time} ${date}`;
+  get swedishDateTimeOfExtract() {
+    return this.formattedDateTime(this._date, "sv");
+  }
+
+  get englishDateTimeOfExtract() {
+    return this.formattedDateTime(this._date, "en");
+  }
+
+  formattedDateTime(date: string, locale: string): string {
+    const dateTimeOfExtract = new Date(date);
+    const formattedDate = new Intl.DateTimeFormat(locale, {
+      dateStyle: "full",
+      timeStyle: "medium"
+    }).format(dateTimeOfExtract);
+    return `${formattedDate[0].toUpperCase()}${formattedDate.slice(1)}`;
   }
 
   get principals() {

@@ -7,11 +7,14 @@ import PrincipalsTableToolbar from "./PrincipalsTableToolbar";
 import PrincipalsTable from "./PrincipalsTable";
 import PrincipalTableDateOfExtract from "./PrincipalTableDateOfExtract";
 import { getDictionary } from "@/app/[lang]/dictionaries";
+import { Locale } from "@/i18n-config";
 
 export default function PrincipalsPageContent({
+  lang,
   dictionary,
   principalsRecord
 }: Readonly<{
+  lang: Locale;
   dictionary: Awaited<ReturnType<typeof getDictionary>>;
   principalsRecord: PrincipalsRecord;
 }>): JSX.Element {
@@ -35,6 +38,12 @@ export default function PrincipalsPageContent({
     useState(true);
 
   const principals: Principals = new Principals(principalsRecord);
+
+  function getDateOfExtract(lang: Locale): string {
+    return lang === "se"
+      ? principals.swedishDateTimeOfExtract
+      : principals.englishDateTimeOfExtract;
+  }
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(event.target.value);
@@ -105,9 +114,7 @@ export default function PrincipalsPageContent({
         dictionary={dictionary}
         principals={filteredPrincipals()}
       />
-      <PrincipalTableDateOfExtract
-        dateOfExtract={principals.dateTimeOfExtract}
-      />
+      <PrincipalTableDateOfExtract dateOfExtract={getDateOfExtract(lang)} />
       <PrincipalsTableToolbar
         dictionary={dictionary}
         searchInput={searchInput}

@@ -31,6 +31,12 @@ describe("princpals", () => {
 
   it("should return a correctly formatted date", () => {
     const principals = new Principals(principalsRecord);
-    expect(principals.dateTimeOfExtract).toEqual("01:00:03 2024-10-13");
+    expect(principals.swedishDateTimeOfExtract).toEqual(
+      "Söndag 13 oktober 2024 kl. 01:00:03"
+    );
+
+    expect(principals.englishDateTimeOfExtract).toEqual(
+      "Sunday, October 13, 2024 at 1:00:03 AM"
+    );
   });
 });
