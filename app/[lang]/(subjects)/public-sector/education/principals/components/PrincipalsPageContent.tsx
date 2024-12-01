@@ -8,6 +8,15 @@ import PrincipalsTable from "./PrincipalsTable";
 import PrincipalTableDateOfExtract from "./PrincipalTableDateOfExtract";
 import { getDictionary } from "@/app/[lang]/dictionaries";
 import { Locale } from "@/i18n-config";
+import {
+  MUNICIPAL_ASSOCIATION,
+  NATIONAL_AGENCY_FOR_EDUCATION,
+  PRIVATE,
+  PUBLIC,
+  REGIONAL,
+  SAMI_SCHOOL,
+  SPECIAL_SCHOOL
+} from "./PrincipalTypes";
 
 export default function PrincipalsPageContent({
   lang,
@@ -80,14 +89,6 @@ export default function PrincipalsPageContent({
   }
 
   function filteredPrincipals() {
-    const PUBLIC = "Kommunal";
-    const PRIVATE = "Enskild";
-    const MUNICIPAL_ASSOCIATION = "Kommunalförbund";
-    const REGIONAL = "Region";
-    const SAMI_SCHOOL = "Sameskolan";
-    const NATIONAL_AGENCY_FOR_EDUCATION = "Skolverket";
-    const SPECIAL_SCHOOL = "Specialskola";
-
     if (
       !publicCheckboxIsChecked &&
       !municipalAssociationCheckboxIsChecked &&
@@ -104,17 +105,24 @@ export default function PrincipalsPageContent({
       (principal: Principal) =>
         (principal.PeOrgNr.includes(searchInput) ||
           principal.Namn.toLowerCase().includes(searchInput.toLowerCase())) &&
-        ((principal.Typ === PUBLIC && publicCheckboxIsChecked) ||
-          (principal.Typ === MUNICIPAL_ASSOCIATION &&
-            municipalAssociationCheckboxIsChecked) ||
-          (principal.Typ === REGIONAL && regionalCheckboxIsChecked) ||
-          (principal.Typ === PRIVATE && privateCheckboxIsChecked) ||
-          (principal.Typ === SAMI_SCHOOL && samiSchoolCheckboxIsChecked) ||
-          (principal.Typ === NATIONAL_AGENCY_FOR_EDUCATION &&
-            nationalAgencyForEducationIsChecked) ||
-          (principal.Typ === SPECIAL_SCHOOL && specialSchoolCheckboxIsChecked))
+        thePrincipalTypeIsSelected(principal)
     );
   }
+
+  function thePrincipalTypeIsSelected(principal: Principal): boolean {
+    return (
+      (principal.Typ === PUBLIC && publicCheckboxIsChecked) ||
+      (principal.Typ === MUNICIPAL_ASSOCIATION &&
+        municipalAssociationCheckboxIsChecked) ||
+      (principal.Typ === REGIONAL && regionalCheckboxIsChecked) ||
+      (principal.Typ === PRIVATE && privateCheckboxIsChecked) ||
+      (principal.Typ === SAMI_SCHOOL && samiSchoolCheckboxIsChecked) ||
+      (principal.Typ === NATIONAL_AGENCY_FOR_EDUCATION &&
+        nationalAgencyForEducationIsChecked) ||
+      (principal.Typ === SPECIAL_SCHOOL && specialSchoolCheckboxIsChecked)
+    );
+  }
+
   return (
     <>
       <PrincipalsTableCounter
