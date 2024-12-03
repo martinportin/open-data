@@ -1,14 +1,17 @@
+import { SWEDISH_NATIONAL_AGENCY_FOR_EDUCATION_API } from "../constants/apis";
+
 export async function getPrincipals(): Promise<PrincipalsRecord> {
-  const API_ADDR: string =
-    "https://api.skolverket.se/skolenhetsregistret/v1/huvudman";
   const ONE_HOUR: number = 36000;
 
   try {
-    const response = await fetch(API_ADDR, {
-      next: {
-        revalidate: ONE_HOUR
+    const response = await fetch(
+      `${SWEDISH_NATIONAL_AGENCY_FOR_EDUCATION_API}/skolenhetsregistret/v1/huvudman`,
+      {
+        next: {
+          revalidate: ONE_HOUR
+        }
       }
-    });
+    );
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
