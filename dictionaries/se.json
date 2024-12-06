@@ -2,6 +2,9 @@
     "common": {
         "search": "Sök"
     },
+    "home": {
+        "publicSector": "Offentlig sektor"
+    },
     "principals": {
         "municipalAssociation": "Kommunalförbund",
         "nationalAgencyForEducation": "Skolverket",

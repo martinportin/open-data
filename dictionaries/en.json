@@ -2,6 +2,9 @@
     "common": {
         "search": "Search"
     },
+    "home": {
+        "publicSector": "Public Sector"
+    },
     "principals": {
         "municipalAssociation": "Municipal Association",
         "nationalAgencyForEducation": "National Agency For Education",
