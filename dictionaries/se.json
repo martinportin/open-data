@@ -5,6 +5,9 @@
     "home": {
         "publicSector": "Offentlig sektor"
     },
+    "publicSector": {
+        "education": "Utbildning"
+    },
     "principals": {
         "municipalAssociation": "Kommunalförbund",
         "nationalAgencyForEducation": "Skolverket",

@@ -5,6 +5,9 @@
     "home": {
         "publicSector": "Public Sector"
     },
+    "publicSector": {
+        "education": "Education"
+    },
     "principals": {
         "municipalAssociation": "Municipal Association",
         "nationalAgencyForEducation": "National Agency For Education",
