@@ -8,6 +8,9 @@
     "publicSector": {
         "education": "Education"
     },
+    "education": {
+        "principals": "Principals"
+    },
     "principals": {
         "municipalAssociation": "Municipal Association",
         "nationalAgencyForEducation": "National Agency For Education",
