@@ -1,17 +1,13 @@
+import {
+  englishParameters,
+  swedishParameters
+} from "@/__test__/constants/parameters";
 import PrincipalsPage from "@/app/[lang]/(subjects)/public-sector/education/principals/page";
 import { render, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import nock from "nock";
 
 describe("principals page", () => {
-  const swedishParameters: Readonly<{ params: { lang: "se" | "en" } }> = {
-    params: { lang: "se" }
-  };
-
-  const englishParameters: Readonly<{ params: { lang: "se" | "en" } }> = {
-    params: { lang: "en" }
-  };
-
   const user = userEvent.setup();
 
   const swedishCheckboxLabels = [

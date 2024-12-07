@@ -1,15 +1,9 @@
 import Home from "@/app/[lang]/page";
 import { render } from "@testing-library/react";
+import { localHost } from "../constants/urls";
+import { englishParameters, swedishParameters } from "../constants/parameters";
 
 describe("home page", () => {
-  const swedishParameters: Readonly<{ params: { lang: "se" | "en" } }> = {
-    params: { lang: "se" }
-  };
-
-  const englishParameters: Readonly<{ params: { lang: "se" | "en" } }> = {
-    params: { lang: "en" }
-  };
-
   describe("links", () => {
     const testParameters: Map<
       RegExp,
@@ -24,7 +18,7 @@ describe("home page", () => {
         const { getByRole } = await renderHomePage(parameters);
         expect(getByRole("link", { name: linkText })).toHaveProperty(
           "href",
-          "http://localhost/public-sector"
+          `${localHost}/${parameters.params.lang}/public-sector`
         );
       });
     });

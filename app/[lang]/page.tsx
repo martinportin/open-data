@@ -6,5 +6,7 @@ export default async function Home({
   params: { lang }
 }: Readonly<{ params: { lang: Locale } }>) {
   const dictionary = await getDictionary(lang);
-  return <Link href="/public-sector">{dictionary.home.publicSector}</Link>;
+  return (
+    <Link href={`/${lang}/public-sector`}>{dictionary.home.publicSector}</Link>
+  );
 }
