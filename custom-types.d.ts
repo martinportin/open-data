@@ -1,3 +1,6 @@
+//Parameters
+type UrlParameters = Readonly<{ params: { lang: Locale } }>;
+
 //Dictionary
 interface Dictionary {
   [key: string]: { [key: string]: string };

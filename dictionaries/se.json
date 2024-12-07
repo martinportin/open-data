@@ -8,6 +8,9 @@
     "publicSector": {
         "education": "Utbildning"
     },
+    "education": {
+        "principals": "Huvudmän"
+    },
     "principals": {
         "municipalAssociation": "Kommunalförbund",
         "nationalAgencyForEducation": "Skolverket",
