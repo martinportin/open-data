@@ -5,15 +5,7 @@ import { englishParameters, swedishParameters } from "../constants/parameters";
 
 describe("home page", () => {
   describe("links", () => {
-    const testParameters: Map<
-      RegExp,
-      Readonly<{ params: { lang: "se" | "en" } }>
-    > = new Map();
-
-    testParameters.set(/Offentlig sektor/i, swedishParameters);
-    testParameters.set(/Public Sector/i, englishParameters);
-
-    testParameters.forEach((parameters, linkText) => {
+    linkParameters().forEach((parameters, linkText) => {
       it("should display a link named public sector", async () => {
         const { getByRole } = await renderHomePage(parameters);
         expect(getByRole("link", { name: linkText })).toHaveProperty(
@@ -24,6 +16,20 @@ describe("home page", () => {
     });
   });
 });
+
+function linkParameters(): Map<
+  RegExp,
+  Readonly<{ params: { lang: "se" | "en" } }>
+> {
+  const linkParameters: Map<
+    RegExp,
+    Readonly<{ params: { lang: "se" | "en" } }>
+  > = new Map();
+
+  linkParameters.set(/Offentlig sektor/i, swedishParameters);
+  linkParameters.set(/Public Sector/i, englishParameters);
+  return linkParameters;
+}
 
 async function renderHomePage(
   parameters: Readonly<{ params: { lang: "se" | "en" } }>

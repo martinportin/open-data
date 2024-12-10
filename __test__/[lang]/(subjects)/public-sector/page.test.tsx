@@ -9,15 +9,7 @@ import { render } from "@testing-library/react";
 
 describe("public sector page", () => {
   describe("links", () => {
-    const testParameters: Map<
-      RegExp,
-      Readonly<{ params: { lang: "se" | "en" } }>
-    > = new Map();
-
-    testParameters.set(/Utbildning/i, swedishParameters);
-    testParameters.set(/Education/i, englishParameters);
-
-    testParameters.forEach((parameter, linkText) => {
+    linkParameters().forEach((parameter, linkText) => {
       it("should display a link named education", async () => {
         const { getByRole } = await renderPubliSectorPage(parameter);
         expect(getByRole("link", { name: linkText })).toHaveProperty(
@@ -28,6 +20,19 @@ describe("public sector page", () => {
     });
   });
 });
+
+function linkParameters(): Map<
+  RegExp,
+  Readonly<{ params: { lang: "se" | "en" } }>
+> {
+  const linkParameters: Map<
+    RegExp,
+    Readonly<{ params: { lang: "se" | "en" } }>
+  > = new Map();
+  linkParameters.set(/Utbildning/i, swedishParameters);
+  linkParameters.set(/Education/i, englishParameters);
+  return linkParameters;
+}
 
 async function renderPubliSectorPage(
   parameters: Readonly<{ params: { lang: Locale } }>
