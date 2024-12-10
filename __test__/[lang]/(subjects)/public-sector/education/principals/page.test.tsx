@@ -19,8 +19,18 @@ describe("principals page", () => {
     /Skolverket:/i,
     /Specialskola:/i
   ];
+  const englishCheckboxLabels = [
+    /Public/i,
+    /Municipal Association/i,
+    /Regional/i,
+    /Private/i,
+    /Sami School/i,
+    /National Agency For Education/i,
+    /National Agency for Special Needs Education and School/i
+  ];
 
   const swedishColumnHeaders = [/Organisationsnummer/i, /Namn/i, /Typ/i];
+  const englishColumnHeaders = [/Organization number/i, /Name/i, /Type/i];
 
   const organizationNumberColumnTexts = [
     /0000000001/i,
@@ -75,45 +85,63 @@ describe("principals page", () => {
   });
 
   describe("date and time of extract", () => {
-    it("should display the date and time of extract in swedish", async () => {
-      const { getByText } = await renderPrincipalsPage(swedishParameters);
-      expect(
-        getByText(/Söndag 13 oktober 2024 kl. 01:00:03/, {
-          selector: "time"
-        })
-      );
-    });
-
-    it("shoudl display the date and time of extract in english", async () => {
-      const { getByText } = await renderPrincipalsPage(englishParameters);
-      expect(
-        getByText(/Sunday, October 13, 2024 at 1:00:03 AM/, {
-          selector: "time"
-        })
-      );
+    dateAndTimeParameters().forEach((parameter, text) => {
+      it("should display the date and time of extract in the correct format", async () => {
+        const { getByText } = await renderPrincipalsPage(parameter);
+        expect(
+          getByText(text, {
+            selector: "time"
+          })
+        );
+      });
     });
   });
 
   describe("toolbar", () => {
-    it("should display a search input field", async () => {
+    it("should display a search input field with a swedish label", async () => {
       const { getByRole } = await renderPrincipalsPage(swedishParameters);
       expect(getByRole("textbox", { name: /Sök/i }));
     });
 
-    it("should display seven checkboxes", async () => {
+    it("should display a search input field with an english label", async () => {
+      const { getByRole } = await renderPrincipalsPage(englishParameters);
+      expect(getByRole("textbox", { name: /Search/i }));
+    });
+
+    it("should display seven checkboxes with swedish labels", async () => {
       const { getByRole } = await renderPrincipalsPage(swedishParameters);
       swedishCheckboxLabels.forEach((label) =>
+        expect(getByRole("checkbox", { name: label }))
+      );
+    });
+
+    it("should display seven checkboxes english labels", async () => {
+      const { getByRole } = await renderPrincipalsPage(englishParameters);
+      englishCheckboxLabels.forEach((label) =>
         expect(getByRole("checkbox", { name: label }))
       );
     });
   });
 
   describe("table", () => {
-    it("should display three column headers", async () => {
+    it("should display three column headers in swedish", async () => {
       const { getAllByRole } = await renderPrincipalsPage(swedishParameters);
       const rows = getAllByRole("row");
       const tableHeaderRow = rows[0];
       swedishColumnHeaders.forEach((header) =>
+        expect(
+          within(tableHeaderRow).getByRole("columnheader", {
+            name: header
+          })
+        )
+      );
+    });
+
+    it("should display three column headers in english", async () => {
+      const { getAllByRole } = await renderPrincipalsPage(englishParameters);
+      const rows = getAllByRole("row");
+      const tableHeaderRow = rows[0];
+      englishColumnHeaders.forEach((header) =>
         expect(
           within(tableHeaderRow).getByRole("columnheader", {
             name: header
@@ -151,30 +179,7 @@ describe("principals page", () => {
   });
 
   describe("filtering", () => {
-    const searchInputTestParameters: Map<string, number> = new Map();
-    searchInputTestParameters.set("Principal", 7);
-    searchInputTestParameters.set("principal", 7);
-    searchInputTestParameters.set("PRINCIPAL", 7);
-    searchInputTestParameters.set("Principal 1", 1);
-    searchInputTestParameters.set("principal 1", 1);
-    searchInputTestParameters.set("PRINCIPAL 1", 1);
-    searchInputTestParameters.set("Principal 2", 1);
-    searchInputTestParameters.set("principal 7", 1);
-    searchInputTestParameters.set("000000000", 7);
-    searchInputTestParameters.set("0000000001", 1);
-    searchInputTestParameters.set("0000000002", 1);
-    searchInputTestParameters.set("0000000007", 1);
-    searchInputTestParameters.set("1", 1);
-    searchInputTestParameters.set("2", 1);
-    searchInputTestParameters.set("7", 1);
-    searchInputTestParameters.set("pal 1", 1);
-    searchInputTestParameters.set("pal 2", 1);
-    searchInputTestParameters.set("pal 7", 1);
-    searchInputTestParameters.set("01", 1);
-    searchInputTestParameters.set("02", 1);
-    searchInputTestParameters.set("07", 1);
-
-    searchInputTestParameters.forEach((expectedNumberOfRows, input) => {
+    searchInputParameters().forEach((expectedNumberOfRows, input) => {
       it("should respond to search input filtering", async () => {
         const { getAllByRole, getByRole } = await renderPrincipalsPage(
           swedishParameters
@@ -196,36 +201,29 @@ describe("principals page", () => {
       });
     });
 
-    const checkboxTestParameters: Map<RegExp, number> = new Map();
-    checkboxTestParameters.set(/Kommunal:/i, 6);
-    checkboxTestParameters.set(/Kommunalförbund:/i, 6);
-    checkboxTestParameters.set(/Region:/i, 6);
-    checkboxTestParameters.set(/Enskild:/i, 6);
-    checkboxTestParameters.set(/Sameskolan:/i, 6);
-    checkboxTestParameters.set(/Skolverket:/i, 6);
-    checkboxTestParameters.set(/Specialskola:/i, 6);
+    checkboxActionParameters().forEach(
+      (expectedNumberOfRows, checkboxLabel) => {
+        it("should respond to single checkbox filtering", async () => {
+          const { getAllByRole, getByRole } = await renderPrincipalsPage(
+            swedishParameters
+          );
+          const rows = getAllByRole("row");
+          const tableBodyRows = rows.slice(1);
+          expect(tableBodyRows).toHaveLength(7);
 
-    checkboxTestParameters.forEach((expectedNumberOfRows, checkboxLabel) => {
-      it("should respond to single checkbox filtering", async () => {
-        const { getAllByRole, getByRole } = await renderPrincipalsPage(
-          swedishParameters
-        );
-        const rows = getAllByRole("row");
-        const tableBodyRows = rows.slice(1);
-        expect(tableBodyRows).toHaveLength(7);
+          const checkbox = getByRole("checkbox", { name: checkboxLabel });
+          await user.click(checkbox);
+          const filteredRows = getAllByRole("row");
+          const filteredTableBodyRows = filteredRows.slice(1);
+          expect(filteredTableBodyRows).toHaveLength(expectedNumberOfRows);
 
-        const checkbox = getByRole("checkbox", { name: checkboxLabel });
-        await user.click(checkbox);
-        const filteredRows = getAllByRole("row");
-        const filteredTableBodyRows = filteredRows.slice(1);
-        expect(filteredTableBodyRows).toHaveLength(expectedNumberOfRows);
-
-        await user.click(checkbox);
-        const unfilteredRows = getAllByRole("row");
-        const unfilteredTableBodyRows = unfilteredRows.slice(1);
-        expect(unfilteredTableBodyRows).toHaveLength(7);
-      });
-    });
+          await user.click(checkbox);
+          const unfilteredRows = getAllByRole("row");
+          const unfilteredTableBodyRows = unfilteredRows.slice(1);
+          expect(unfilteredTableBodyRows).toHaveLength(7);
+        });
+      }
+    );
 
     it("should respond to multiple checkboxFiltering", async () => {
       const { getAllByRole, getByRole } = await renderPrincipalsPage(
@@ -268,6 +266,60 @@ describe("principals page", () => {
     const { getAllByRole } = await renderPrincipalsPage(swedishParameters);
     const rows = getAllByRole("row");
     return rows.slice(1);
+  }
+
+  function dateAndTimeParameters(): Map<
+    RegExp,
+    Readonly<{ params: { lang: "se" | "en" } }>
+  > {
+    const dateAndTimeParameters = new Map();
+    dateAndTimeParameters.set(
+      /Söndag 13 oktober 2024 kl. 01:00:03/,
+      swedishParameters
+    );
+    dateAndTimeParameters.set(
+      /Sunday, October 13, 2024 at 1:00:03 AM/,
+      englishParameters
+    );
+    return dateAndTimeParameters;
+  }
+
+  function searchInputParameters(): Map<string, number> {
+    const searchInputTestParameters: Map<string, number> = new Map();
+    searchInputTestParameters.set("Principal", 7);
+    searchInputTestParameters.set("principal", 7);
+    searchInputTestParameters.set("PRINCIPAL", 7);
+    searchInputTestParameters.set("Principal 1", 1);
+    searchInputTestParameters.set("principal 1", 1);
+    searchInputTestParameters.set("PRINCIPAL 1", 1);
+    searchInputTestParameters.set("Principal 2", 1);
+    searchInputTestParameters.set("principal 7", 1);
+    searchInputTestParameters.set("000000000", 7);
+    searchInputTestParameters.set("0000000001", 1);
+    searchInputTestParameters.set("0000000002", 1);
+    searchInputTestParameters.set("0000000007", 1);
+    searchInputTestParameters.set("1", 1);
+    searchInputTestParameters.set("2", 1);
+    searchInputTestParameters.set("7", 1);
+    searchInputTestParameters.set("pal 1", 1);
+    searchInputTestParameters.set("pal 2", 1);
+    searchInputTestParameters.set("pal 7", 1);
+    searchInputTestParameters.set("01", 1);
+    searchInputTestParameters.set("02", 1);
+    searchInputTestParameters.set("07", 1);
+    return searchInputTestParameters;
+  }
+
+  function checkboxActionParameters(): Map<RegExp, number> {
+    const checkboxActionParameters: Map<RegExp, number> = new Map();
+    checkboxActionParameters.set(/Kommunal:/i, 6);
+    checkboxActionParameters.set(/Kommunalförbund:/i, 6);
+    checkboxActionParameters.set(/Region:/i, 6);
+    checkboxActionParameters.set(/Enskild:/i, 6);
+    checkboxActionParameters.set(/Sameskolan:/i, 6);
+    checkboxActionParameters.set(/Skolverket:/i, 6);
+    checkboxActionParameters.set(/Specialskola:/i, 6);
+    return checkboxActionParameters;
   }
 
   function setUpNock() {

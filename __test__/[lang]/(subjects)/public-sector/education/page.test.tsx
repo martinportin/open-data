@@ -9,14 +9,7 @@ import { render } from "@testing-library/react";
 
 describe("eduation page", () => {
   describe("links", () => {
-    const parameters: Map<
-      RegExp,
-      Readonly<{ params: { lang: "se" | "en" } }>
-    > = new Map();
-    parameters.set(/Huvudmän/i, swedishParameters);
-    parameters.set(/Principals/i, englishParameters);
-
-    parameters.forEach((parameter, linkText) => {
+    linkParameters().forEach((parameter, linkText) => {
       it("should display a principals link on the education page", async () => {
         const { getByRole } = await renderEducationPage(parameter);
         expect(getByRole("link", { name: linkText })).toHaveProperty(
@@ -27,6 +20,16 @@ describe("eduation page", () => {
     });
   });
 });
+
+function linkParameters(): Map<
+  RegExp,
+  Readonly<{ params: { lang: "se" | "en" } }>
+> {
+  const linkParameters = new Map();
+  linkParameters.set(/Huvudmän/i, swedishParameters);
+  linkParameters.set(/Principals/i, englishParameters);
+  return linkParameters;
+}
 
 async function renderEducationPage(
   parameters: Readonly<{ params: { lang: Locale } }>
