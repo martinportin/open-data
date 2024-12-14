@@ -1,6 +1,12 @@
 //Parameters
 type UrlParameters = Readonly<{ params: { lang: Locale } }>;
 
+//Link informationobject
+interface LinkData {
+  name: string;
+  url: string;
+}
+
 //Dictionary
 interface Dictionary {
   [key: string]: { [key: string]: string };
