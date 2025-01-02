@@ -1,5 +1,5 @@
 import { Locale } from "@/i18n-config";
-import PrincipalsPageContent from "./components/PrincipalsPageContent";
+import PrincipalsWrapper from "./components/PrincipalsWrapper";
 import { getPrincipals } from "./services/SNAE";
 import { getDictionary } from "@/app/[lang]/dictionaries";
 
@@ -11,7 +11,7 @@ export default async function PrincipalsPage({
     getPrincipals()
   ]);
   return (
-    <PrincipalsPageContent
+    <PrincipalsWrapper
       lang={lang}
       dictionary={dictionary}
       principalsRecord={principalsRecord}

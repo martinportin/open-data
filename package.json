@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "TZ=UTC jest --coverage",
     "lint": "next lint",
-    "test:watch": "jest --watchAll"
+    "test:watch": "TZ=UTC jest --watchAll"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.6",

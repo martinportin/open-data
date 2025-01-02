@@ -1,4 +1,4 @@
-export default function PrincipalsTableCounter({
+export default function PrincipalsHeader({
   dictionary,
   principals
 }: Readonly<{

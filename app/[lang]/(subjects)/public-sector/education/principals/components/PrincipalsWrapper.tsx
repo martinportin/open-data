@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import PrincipalsTableCounter from "./PrincipalsTableCounter";
+import PrincipalsHeader from "./PrincipalsHeader";
 import Principals from "./Principals";
 import PrincipalsTableToolbar from "./PrincipalsTableToolbar";
 import PrincipalsTable from "./PrincipalsTable";
-import PrincipalTableDateOfExtract from "./PrincipalTableDateOfExtract";
+import PrincipalsSubheader from "./PrincipalsSubheader";
 import { getDictionary } from "@/app/[lang]/dictionaries";
 import { Locale } from "@/i18n-config";
 import {
@@ -18,7 +18,7 @@ import {
   SPECIAL_SCHOOL
 } from "./PrincipalTypes";
 
-export default function PrincipalsPageContent({
+export default function PrincipalsWrapper({
   lang,
   dictionary,
   principalsRecord
@@ -125,11 +125,11 @@ export default function PrincipalsPageContent({
 
   return (
     <>
-      <PrincipalsTableCounter
+      <PrincipalsHeader
         dictionary={dictionary}
         principals={filteredPrincipals()}
       />
-      <PrincipalTableDateOfExtract dateOfExtract={getDateOfExtract(lang)} />
+      <PrincipalsSubheader dateTimeOfExtract={getDateOfExtract(lang)} />
       <PrincipalsTableToolbar
         dictionary={dictionary}
         searchInput={searchInput}
