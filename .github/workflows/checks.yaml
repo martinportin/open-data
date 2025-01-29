@@ -1,4 +1,4 @@
-name: Code checks
+name: Code checks and tests
 
 on:
   push:
@@ -21,3 +21,22 @@ jobs:
 
       - name: Run lint
         run: npm run lint
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TZ: 'Europe/Stockholm'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Jest tests
+        run: npm test
