@@ -11,10 +11,13 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "i18next": "^24.2.2",
+    "i18next-resources-to-backend": "^1.2.1",
     "next": "15.1.6",
     "next-i18n-router": "^5.5.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-i18next": "^15.4.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
