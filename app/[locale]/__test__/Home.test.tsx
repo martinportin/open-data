@@ -1,13 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import Page from '../page';
+import Home from '../page';
 
 describe('home page', () => {
-  test('should render a header with the text "Open data"', () => {
-    render(<Page />);
+  test('should render a header with the text "Open data"', async () => {
+    const homePage = await Home({
+      params: Promise.resolve({ locale: 'en' })
+    });
+    render(homePage);
 
     const header = screen.getByRole('heading', {
       level: 1,
-      name: /Open data/i,
+      name: /header/i
     });
 
     expect(header).toBeInTheDocument();

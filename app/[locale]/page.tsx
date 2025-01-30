@@ -1,7 +1,7 @@
 import initTranslations from '../i18n';
 
 export default async function Home({
-  params,
+  params
 }: Readonly<{ params: Promise<{ locale: string }> }>) {
   const { locale } = await params;
   const { t } = await initTranslations(locale, ['home']);

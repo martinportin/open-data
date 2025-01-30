@@ -1,7 +1,7 @@
-const i18nConfig = {
+const i18nConfig: Config = {
   locales: ['en', 'sv'],
   defaultLocale: 'en',
-  prefixDefault: true,
+  prefixDefault: true
 };
 
 export default i18nConfig;

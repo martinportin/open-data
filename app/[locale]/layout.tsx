@@ -3,12 +3,12 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Open data',
-  description: 'Present data from open sources',
+  description: 'Present data from open sources'
 };
 
 export default async function RootLayout({
   children,
-  params,
+  params
 }: Readonly<{
   children: React.ReactNode;
   params: Promise<{ locale: string }>;
