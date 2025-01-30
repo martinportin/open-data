@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Home from '../page';
 
 describe('home page', () => {
-  test('should render a header with the text "Open data"', async () => {
+  test('should render a header with translation key "header"', async () => {
     const homePage = await Home({
       params: Promise.resolve({ locale: 'en' })
     });
