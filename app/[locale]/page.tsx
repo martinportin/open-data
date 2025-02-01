@@ -1,5 +1,4 @@
 import initTranslations from '../i18n';
-import ClientComponent from './components/ClientComponent';
 import TranslationsProvider from '../components/TranslationsProvider';
 
 export default async function Home({
@@ -14,8 +13,7 @@ export default async function Home({
       namespaces={namespaces}
       resources={resources}
     >
-      <h1>{t('header')}</h1>
-      <ClientComponent />
+      <h1>{t('openData')}</h1>
     </TranslationsProvider>
   );
 }
