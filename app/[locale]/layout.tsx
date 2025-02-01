@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export function generateStaticParams(): { locale: string }[] {
-  return i18nConfig.locales.map((locale) => ({ locale }));
+  return i18nConfig.locales.map((locale: string) => ({ locale }));
 }
 
 export default async function RootLayout({

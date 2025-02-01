@@ -1,18 +1,8 @@
-import { render, screen } from '@testing-library/react';
-import Home from '../page';
+import { renderHome } from './utils/renderers/renderHome';
 
 describe('home page', () => {
-  test('should render a header with translation key "header"', async () => {
-    const homePage = await Home({
-      params: Promise.resolve({ locale: 'en' })
-    });
-    render(homePage);
-
-    const header = screen.getByRole('heading', {
-      level: 1,
-      name: /header/i
-    });
-
-    expect(header).toBeInTheDocument();
+  test('should render a header with translation key "openData"', async () => {
+    const { getHeader } = await renderHome();
+    expect(getHeader()).toBeInTheDocument();
   });
 });
