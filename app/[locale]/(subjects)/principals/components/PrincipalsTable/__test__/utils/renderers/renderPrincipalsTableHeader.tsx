@@ -1,4 +1,4 @@
-import PrincipalsTableHeader from '../../../PrincipalsTableHeader';
+import PrincipalsTableHeader from '../../../components/PrincipalsTableHeader';
 import { params } from '@/app/[locale]/__test__/utils/mocks/params';
 import { render, screen } from '@testing-library/react';
 
