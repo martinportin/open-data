@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import PrincipalsTableBody from '../../../PrincipalsTableBody';
+import PrincipalsTableBody from '../../../components/PrincipalsTableBody';
 
 export function renderPrincipalsTableBody(principalsList: Principal[]) {
   const table = document.createElement('table');
