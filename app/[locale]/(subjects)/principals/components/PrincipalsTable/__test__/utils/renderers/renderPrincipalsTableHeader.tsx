@@ -5,7 +5,7 @@ import { render, screen } from '@testing-library/react';
 export async function renderPrincipalsTableHeader() {
   const table = document.createElement('table');
 
-  const principalsTableHeader = await PrincipalsTableHeader(params);
+  const principalsTableHeader = await PrincipalsTableHeader({ params });
   render(principalsTableHeader, {
     container: document.body.appendChild(table)
   });

@@ -3,7 +3,7 @@ import { params } from '../mocks/params';
 import { render, screen } from '@testing-library/react';
 
 export async function renderHome() {
-  const homePage = await Home(params);
+  const homePage = await Home({ params });
   render(homePage);
 
   return {
