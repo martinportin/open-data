@@ -1,3 +1,1 @@
-export const params = {
-  params: Promise.resolve({ locale: 'en' })
-};
+export const params = Promise.resolve({ locale: 'en' });
