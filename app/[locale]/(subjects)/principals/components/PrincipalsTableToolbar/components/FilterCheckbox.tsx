@@ -1,23 +1,27 @@
 import initTranslations from '@/app/i18n';
 
-export default async function SearchInput({
+export default async function FilterCheckbox({
   params,
-  searchInputValue,
+  principalType,
+  isChecked,
   handleInputChange
 }: Readonly<{
   params: Promise<{ locale: string }>;
-  searchInputValue: string;
+  principalType: string;
+  isChecked: boolean;
   handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
 }>) {
   const { locale } = await params;
-  const namespaces = ['common'];
+  const namespaces = ['principals'];
   const { t } = await initTranslations(locale, namespaces);
+
   return (
     <label>
-      {t('search')}:
+      {t(`${principalType}`)}
       <input
-        id="search"
-        value={searchInputValue}
+        id={`${principalType}Checkbox`}
+        type="checkbox"
+        checked={isChecked}
         onChange={handleInputChange}
       />
     </label>

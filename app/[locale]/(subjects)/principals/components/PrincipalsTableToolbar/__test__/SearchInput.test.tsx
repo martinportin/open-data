@@ -12,7 +12,7 @@ describe('search input', () => {
     expect(getSearchInput()).toHaveValue(getSearchInputValue());
   });
 
-  test('search input should have value "search input value"', async () => {
+  test('"handleInputChange" should be called when typing in the search input', async () => {
     const { getSearchInput, getHandleInputChange } = await renderSearchInput();
     await userEvent.type(getSearchInput(), 'New input');
     expect(getHandleInputChange()).toHaveBeenCalledTimes(9);

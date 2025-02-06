@@ -1,3 +1,11 @@
 {
-    "organizationNumber": "Organisationsnummer"
+    "municipalAssociation": "Kommunalförbund",
+    "nationalAgencyForEducation": "Skolverket",
+    "numberOf": "Antal",
+    "organizationNumber": "Organisationsnummer",
+    "private": "Enskild",
+    "public": "Kommunal",
+    "regional": "Region",
+    "samiSchool": "Sameskolan",
+    "specialSchool": "Specialskola"
 }

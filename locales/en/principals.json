@@ -1,3 +1,11 @@
 {
-    "organizationNumber": "Organization Number"
+    "municipalAssociation": "Municipal Association",
+    "nationalAgencyForEducation": "National Agency For Education",
+    "numberOf": "Number of principals",
+    "organizationNumber": "Organization number",
+    "private": "Private",
+    "public": "Public",
+    "regional": "Regional",
+    "samiSchool": "Sami School",
+    "specialSchool": "National Agency for Special Needs Education and Schools",
 }
