@@ -2,11 +2,7 @@ export default function SearchInput({
   label,
   searchInputValue,
   handleInputChange
-}: Readonly<{
-  label: string;
-  searchInputValue: string;
-  handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
-}>) {
+}: Readonly<SearchInputProps>) {
   return (
     <label>
       {label}:

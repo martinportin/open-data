@@ -2,9 +2,11 @@ import PrincipalsToolbar from '../../PrincipalsToolbar';
 import { render, screen } from '@testing-library/react';
 
 export default function renderPrincipalsToolbar() {
-  const searchInputLabel = 'search';
-  const searchInputValue = 'Search input';
-  const handleSearchInputChange = jest.fn();
+  const searchInputProps = {
+    label: 'search',
+    searchInputValue: 'Search input',
+    handleInputChange: jest.fn()
+  };
   const filterCheckboxProps = [
     {
       principalType: 'principalType0',
@@ -24,9 +26,7 @@ export default function renderPrincipalsToolbar() {
   ];
   render(
     <PrincipalsToolbar
-      searchInputLabel={searchInputLabel}
-      searchInputValue={searchInputValue}
-      handleSearchInputChange={handleSearchInputChange}
+      searchInputProps={searchInputProps}
       filterCheckboxProps={filterCheckboxProps}
     />
   );

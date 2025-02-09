@@ -1,9 +1,8 @@
 export default function FilterCheckbox({
-  checkboxProp
-}: Readonly<{
-  checkboxProp: FiltercheckboxProp;
-}>) {
-  const { principalType, isChecked, handleCheckboxChange } = checkboxProp;
+  principalType,
+  isChecked,
+  handleCheckboxChange
+}: Readonly<FiltercheckboxProps>) {
   return (
     <label>
       {principalType}:
