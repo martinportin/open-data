@@ -3,3 +3,9 @@ interface Principal {
   Namn: string;
   Typ: string;
 }
+
+interface FilterCheckboxProp {
+  principalType: string;
+  isChecked: boolean;
+  handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
+}
