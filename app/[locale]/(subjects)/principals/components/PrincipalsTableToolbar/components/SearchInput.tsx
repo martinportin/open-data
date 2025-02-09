@@ -1,20 +1,15 @@
-import initTranslations from '@/app/i18n';
-
-export default async function SearchInput({
-  params,
+export default function SearchInput({
+  label,
   searchInputValue,
   handleInputChange
 }: Readonly<{
-  params: Promise<{ locale: string }>;
+  label: string;
   searchInputValue: string;
   handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
 }>) {
-  const { locale } = await params;
-  const namespaces = ['common'];
-  const { t } = await initTranslations(locale, namespaces);
   return (
     <label>
-      {t('search')}:
+      {label}:
       <input
         id="search"
         value={searchInputValue}

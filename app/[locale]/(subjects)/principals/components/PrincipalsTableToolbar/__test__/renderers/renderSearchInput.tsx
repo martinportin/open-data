@@ -1,16 +1,17 @@
 import { render, screen } from '@testing-library/react';
 import SearchInput from '../../components/SearchInput';
-import { params } from '@/app/[locale]/__test__/utils/mocks/params';
 
-export async function renderSearchInput() {
+export function renderSearchInput() {
+  const label = 'search';
   const searchInputValue = 'Search input';
   const handleInputChange = jest.fn();
-  const searchInput = await SearchInput({
-    params,
-    searchInputValue,
-    handleInputChange
-  });
-  render(searchInput);
+  render(
+    <SearchInput
+      label={label}
+      searchInputValue={searchInputValue}
+      handleInputChange={handleInputChange}
+    />
+  );
 
   return {
     screen,

@@ -1,28 +1,17 @@
-import initTranslations from '@/app/i18n';
-
-export default async function FilterCheckbox({
-  params,
-  principalType,
-  isChecked,
-  handleInputChange
+export default function FilterCheckbox({
+  checkboxProp
 }: Readonly<{
-  params: Promise<{ locale: string }>;
-  principalType: string;
-  isChecked: boolean;
-  handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
+  checkboxProp: FiltercheckboxProp;
 }>) {
-  const { locale } = await params;
-  const namespaces = ['principals'];
-  const { t } = await initTranslations(locale, namespaces);
-
+  const { principalType, isChecked, handleCheckboxChange } = checkboxProp;
   return (
     <label>
-      {t(`${principalType}`)}
+      {principalType}:
       <input
         id={`${principalType}Checkbox`}
         type="checkbox"
         checked={isChecked}
-        onChange={handleInputChange}
+        onChange={handleCheckboxChange}
       />
     </label>
   );
