@@ -1,15 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import PrincipalsTableBody from '../../../components/PrincipalsTableBody';
+import { principalsTableBodyProps } from '../mocks/props';
 
-export function renderPrincipalsTableBody(principalsList: Principal[]) {
+export function renderPrincipalsTableBody() {
   const table = document.createElement('table');
-
-  render(<PrincipalsTableBody principals={principalsList} />, {
+  render(<PrincipalsTableBody {...principalsTableBodyProps} />, {
     container: document.body.appendChild(table)
   });
 
   return {
-    getASingleTableRow: () => screen.queryByRole('row'),
     getTableRows: () => screen.getAllByRole('row')
   };
 }
