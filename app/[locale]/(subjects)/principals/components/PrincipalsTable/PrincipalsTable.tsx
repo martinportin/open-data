@@ -1,5 +1,14 @@
+import PrincipalsTableHeader from './components/PrincipalsTableHeader';
+import PrincipalsTableBody from './components/PrincipalsTableBody';
+
 export default function PrincipalsTable({
-  children
-}: Readonly<{ children: React.ReactNode }>) {
-  return <table>{children}</table>;
+  principalsTableHeaderProps,
+  principalsTableBodyProps
+}: Readonly<PrincipalsTableProps>) {
+  return (
+    <table>
+      <PrincipalsTableHeader {...principalsTableHeaderProps} />
+      <PrincipalsTableBody {...principalsTableBodyProps} />
+    </table>
+  );
 }

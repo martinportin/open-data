@@ -20,3 +20,18 @@ interface PrincipalToolbarProps {
   searchInputProps: SearchInputProps;
   filterCheckboxProps: FilterCheckboxProps[];
 }
+
+interface PrincipalTableHeaderProps {
+  organizationNumner: string;
+  name: string;
+  type: string;
+}
+
+interface PrincipalTableBodyProps {
+  principals: Principal[];
+}
+
+interface PrincipalsTableProps {
+  principalsTableHeaderProps: PrincipalTableHeaderProps;
+  principalsTableBodyProps: PrincipalTableBodyProps;
+}

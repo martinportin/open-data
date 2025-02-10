@@ -1,17 +1,14 @@
-import initTranslations from '@/app/i18n';
-
-export default async function PrincipalsTableHeader({
-  params
-}: Readonly<{ params: Promise<{ locale: string }> }>) {
-  const { locale } = await params;
-  const namespaces = ['principals'];
-  const { t } = await initTranslations(locale, namespaces);
+export default function PrincipalsTableHeader({
+  organizationNumber,
+  name,
+  type
+}: Readonly<PrincipalTableHeaderProps>) {
   return (
     <thead>
       <tr>
-        <th>{t('organizationNumber')}</th>
-        <th>{t('name')}</th>
-        <th>{t('type')}</th>
+        <th>{organizationNumber}</th>
+        <th>{name}</th>
+        <th>{type}</th>
       </tr>
     </thead>
   );

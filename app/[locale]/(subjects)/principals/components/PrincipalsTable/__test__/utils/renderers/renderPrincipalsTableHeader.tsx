@@ -1,21 +1,19 @@
-import PrincipalsTableHeader from '../../../components/PrincipalsTableHeader';
-import { params } from '@/app/[locale]/__test__/utils/mocks/params';
 import { render, screen } from '@testing-library/react';
+import PrincipalsTableHeader from '../../../components/PrincipalsTableHeader';
+import { principalsTableHeaderProps } from '../mocks/props';
 
-export async function renderPrincipalsTableHeader() {
+export function renderPrincipalsTableHeader() {
   const table = document.createElement('table');
-
-  const principalsTableHeader = await PrincipalsTableHeader({ params });
-  render(principalsTableHeader, {
+  render(<PrincipalsTableHeader {...principalsTableHeaderProps} />, {
     container: document.body.appendChild(table)
   });
 
   return {
     getOrganizationNumberColumnHeader: () =>
-      screen.getByRole('columnheader', { name: /organizationNumber/i }),
+      screen.getByRole('columnheader', { name: /Organization Number/i }),
     getNameColumnHeader: () =>
-      screen.getByRole('columnheader', { name: /name/i }),
+      screen.getByRole('columnheader', { name: /Name/i }),
     getTypeColumnHeader: () =>
-      screen.getByRole('columnheader', { name: /type/i })
+      screen.getByRole('columnheader', { name: /Type/i })
   };
 }
