@@ -22,7 +22,7 @@ interface PrincipalToolbarProps {
 }
 
 interface PrincipalTableHeaderProps {
-  organizationNumner: string;
+  organizationNumber: string;
   name: string;
   type: string;
 }
@@ -34,4 +34,10 @@ interface PrincipalTableBodyProps {
 interface PrincipalsTableProps {
   principalsTableHeaderProps: PrincipalTableHeaderProps;
   principalsTableBodyProps: PrincipalTableBodyProps;
+}
+
+interface PrincipalsHeaderProps {
+  numberOf: string;
+  principals: string;
+  numberOfPrincipals: number;
 }
