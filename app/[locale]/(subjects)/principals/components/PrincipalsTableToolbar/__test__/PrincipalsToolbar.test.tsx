@@ -1,4 +1,4 @@
-import renderPrincipalsToolbar from './renderers/renderPrincipalsToolbar';
+import renderPrincipalsToolbar from './utils/renderers/renderPrincipalsToolbar';
 
 describe('principals toolbar', () => {
   test('should display a search input', () => {

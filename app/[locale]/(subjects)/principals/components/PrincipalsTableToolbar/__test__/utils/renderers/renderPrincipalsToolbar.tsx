@@ -1,4 +1,4 @@
-import PrincipalsToolbar from '../../PrincipalsToolbar';
+import PrincipalsToolbar from '../../../PrincipalsToolbar';
 import { render, screen } from '@testing-library/react';
 
 export default function renderPrincipalsToolbar() {
