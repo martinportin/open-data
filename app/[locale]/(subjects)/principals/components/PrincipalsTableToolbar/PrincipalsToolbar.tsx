@@ -6,7 +6,7 @@ export default function PrincipalsToolbar({
   filterCheckboxProps
 }: Readonly<PrincipalToolbarProps>) {
   const filterCheckboxes = filterCheckboxProps.map(
-    (filterCheckboxProp: FilterCheckboxProp) => (
+    (filterCheckboxProp: FilterCheckboxProps) => (
       <FilterCheckbox
         key={filterCheckboxProp.principalType}
         {...filterCheckboxProp}
