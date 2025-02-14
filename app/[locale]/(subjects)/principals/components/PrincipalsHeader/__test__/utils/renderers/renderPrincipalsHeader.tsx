@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import PrincipalsHeader from '../../../PrincipalsHeader';
 
-export default function renderPrincipalsHeader(principalsHeaderProps) {
+export default function renderPrincipalsHeader(
+  principalsHeaderProps: PrincipalsHeaderProps
+) {
   render(<PrincipalsHeader {...principalsHeaderProps} />);
 
   return {

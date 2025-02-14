@@ -1,17 +1,19 @@
-export const principalsHeaderPropsNoPrincipals = {
+const principalsTexts = {
   numberOf: 'Number of',
-  principals: 'Principals',
+  principals: 'Principals'
+};
+
+export const principalsHeaderPropsNoPrincipals = {
+  ...principalsTexts,
   numberOfPrincipals: 0
 };
 
 export const principalsHeaderPropsThreePrincipals = {
-  numberOf: 'Number of',
-  principals: 'Principals',
+  ...principalsTexts,
   numberOfPrincipals: 3
 };
 
 export const principalsHeaderPropsSevenPrincipals = {
-  numberOf: 'Number of',
-  principals: 'Principals',
+  ...principalsTexts,
   numberOfPrincipals: 7
 };

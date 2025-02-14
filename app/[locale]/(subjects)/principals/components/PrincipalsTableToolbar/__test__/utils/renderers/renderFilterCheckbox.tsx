@@ -1,13 +1,7 @@
-import FilterCheckbox from '../../components/FilterCheckbox';
+import FilterCheckbox from '../../../components/FilterCheckbox';
 import { render, screen } from '@testing-library/react';
 
-export function renderFilterCheckbox() {
-  const checkboxProps: FilterCheckboxProps = {
-    principalType: 'principalType',
-    isChecked: true,
-    handleCheckboxChange: jest.fn()
-  };
-
+export function renderFilterCheckbox(checkboxProps: FilterCheckboxProps) {
   render(<FilterCheckbox {...checkboxProps} />);
 
   return {
