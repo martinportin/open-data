@@ -1,29 +1,10 @@
 import PrincipalsToolbar from '../../../PrincipalsToolbar';
 import { render, screen } from '@testing-library/react';
 
-export default function renderPrincipalsToolbar() {
-  const searchInputProps = {
-    label: 'search',
-    searchInputValue: 'Search input',
-    handleInputChange: jest.fn()
-  };
-  const filterCheckboxProps = [
-    {
-      principalType: 'principalType0',
-      isChecked: true,
-      handleFilterCheckboxChange: jest.fn()
-    },
-    {
-      principalType: 'principalType1',
-      isChecked: true,
-      handleFilterCheckboxChange: jest.fn()
-    },
-    {
-      principalType: 'principalType2',
-      isChecked: true,
-      handleFilterCheckboxChange: jest.fn()
-    }
-  ];
+export default function renderPrincipalsToolbar(
+  searchInputProps: SearchInputProps,
+  filterCheckboxProps: FilterCheckboxProps
+) {
   render(
     <PrincipalsToolbar
       searchInputProps={searchInputProps}
@@ -33,6 +14,7 @@ export default function renderPrincipalsToolbar() {
 
   return {
     getSearchInput: () => screen.getByRole('textbox', { name: /search/i }),
+    getSingleFilterCheckbox: () => screen.queryByRole('checkbox'),
     getFilterCheckboxes: () => screen.getAllByRole('checkbox')
   };
 }
