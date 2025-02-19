@@ -1,6 +1,6 @@
 export default function PrincipalsTableBody({
   principals
-}: Readonly<PrincipalTableBodyProps>) {
+}: Readonly<PrincipalsTableBodyProps>) {
   const tableRows = principals.map((principal) => (
     <tr key={principal.PeOrgNr}>
       <th>{principal.PeOrgNr}</th>

@@ -2,13 +2,12 @@ import PrincipalsTableHeader from './components/PrincipalsTableHeader';
 import PrincipalsTableBody from './components/PrincipalsTableBody';
 
 export default function PrincipalsTable({
-  principalsTableHeaderProps,
-  principalsTableBodyProps
+  principals
 }: Readonly<PrincipalsTableProps>) {
   return (
     <table>
-      <PrincipalsTableHeader {...principalsTableHeaderProps} />
-      <PrincipalsTableBody {...principalsTableBodyProps} />
+      <PrincipalsTableHeader />
+      <PrincipalsTableBody principals={principals} />
     </table>
   );
 }

@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 export default function renderPrincipalsToolbar(
   searchInputProps: SearchInputProps,
-  filterCheckboxProps: FilterCheckboxProps
+  filterCheckboxProps: FilterCheckboxProps[]
 ) {
   render(
     <PrincipalsToolbar

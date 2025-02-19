@@ -6,22 +6,22 @@ import {
 } from './utils/mocks/props';
 
 describe('principals header', () => {
-  test('should render a header showing zero number of principals', () => {
-    const { getHeaderShowingNoPrincipals } = renderPrincipalsHeader(
+  test('should render a header showing zero number of principals', async () => {
+    const { getHeaderShowingNoPrincipals } = await renderPrincipalsHeader(
       principalsHeaderPropsNoPrincipals
     );
     expect(getHeaderShowingNoPrincipals()).toBeInTheDocument();
   });
 
-  test('should render a header showing three number of principals', () => {
-    const { getHeaderShowingThreePrincipals } = renderPrincipalsHeader(
+  test('should render a header showing three number of principals', async () => {
+    const { getHeaderShowingThreePrincipals } = await renderPrincipalsHeader(
       principalsHeaderPropsThreePrincipals
     );
     expect(getHeaderShowingThreePrincipals()).toBeInTheDocument();
   });
 
-  test('should render a header showing seven number of principals', () => {
-    const { getHeaderShowingSevenPrincipals } = renderPrincipalsHeader(
+  test('should render a header showing seven number of principals', async () => {
+    const { getHeaderShowingSevenPrincipals } = await renderPrincipalsHeader(
       principalsHeaderPropsSevenPrincipals
     );
     expect(getHeaderShowingSevenPrincipals()).toBeInTheDocument();

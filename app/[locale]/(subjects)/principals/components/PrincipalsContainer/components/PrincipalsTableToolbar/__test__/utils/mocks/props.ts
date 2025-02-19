@@ -7,7 +7,6 @@ export const filterCheckboxProps = {
 export const filterCheckboxPropsEmpty: FilterCheckboxProps[] = [];
 
 export const searchInputProps = {
-  label: 'search',
   searchInputValue: 'Search input',
   handleInputChange: jest.fn()
 };

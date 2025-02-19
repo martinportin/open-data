@@ -1,16 +1,21 @@
 import { render, screen } from '@testing-library/react';
+import initTranslations from '@/app/i18n';
+import TranslationsProvider from '@/app/components/TranslationsProvider';
 import PrincipalsTable from '../../../PrincipalsTable';
-import {
-  principalsTableHeaderProps,
-  principalsTableBodyPropsLarge
-} from '../mocks/props';
+import { sevenPrincipals } from '../mocks/props';
 
-export function renderPrincipalsTable() {
+export async function renderPrincipalsTable() {
+  const locale = 'en';
+  const i18nNamespaces = ['principals'];
+  const { resources } = await initTranslations(locale, i18nNamespaces);
   render(
-    <PrincipalsTable
-      principalsTableHeaderProps={principalsTableHeaderProps}
-      principalsTableBodyProps={principalsTableBodyPropsLarge}
-    />
+    <TranslationsProvider
+      locale={locale}
+      namespaces={i18nNamespaces}
+      resources={resources}
+    >
+      <PrincipalsTable principals={sevenPrincipals.principals} />
+    </TranslationsProvider>
   );
 
   return {

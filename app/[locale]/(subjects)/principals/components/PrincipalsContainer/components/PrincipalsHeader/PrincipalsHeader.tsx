@@ -1,7 +1,11 @@
+'use client';
+
+import { useTranslation } from 'react-i18next';
+
 export default function PrincipalsHeader({
-  numberOf,
-  principals,
   numberOfPrincipals
 }: Readonly<PrincipalsHeaderProps>) {
-  return <h1>{`${numberOf} ${principals} (${numberOfPrincipals})`}</h1>;
+  const { t } = useTranslation();
+
+  return <h1>{`${t('numberOf')} (${numberOfPrincipals})`}</h1>;
 }
