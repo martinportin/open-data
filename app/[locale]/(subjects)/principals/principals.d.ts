@@ -5,7 +5,6 @@ interface Principal {
 }
 
 interface SearchInputProps {
-  label: string;
   searchInputValue: string;
   handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
 }
@@ -27,17 +26,21 @@ interface PrincipalTableHeaderProps {
   type: string;
 }
 
-interface PrincipalTableBodyProps {
+interface PrincipalsTableBodyProps {
   principals: Principal[];
 }
 
 interface PrincipalsTableProps {
-  principalsTableHeaderProps: PrincipalTableHeaderProps;
-  principalsTableBodyProps: PrincipalTableBodyProps;
+  principals: Principal[];
 }
 
 interface PrincipalsHeaderProps {
-  numberOf: string;
-  principals: string;
   numberOfPrincipals: number;
+}
+
+interface PrincipalsContainerProps {
+  principals: Principal[];
+  dateTimeOfExtract: string;
+  searchInputProps: SearchInputProps;
+  filterCheckboxProps: FilterCheckboxProps[];
 }
