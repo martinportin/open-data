@@ -2,7 +2,7 @@
 
 import PrincipalsHeader from './components/PrincipalsHeader/PrincipalsHeader';
 import PrincipalsDateTimeOfExtract from './components/PrincipalsDateTimeOfExtract/PrincipalsDateTimeOfExtract';
-import PrincipalsToolbar from './components/PrincipalsTableToolbar/PrincipalsToolbar';
+import PrincipalsToolbar from './components/PrincipalsToolbar/PrincipalsToolbar';
 import PrincipalsTable from './components/PrincipalsTable/PrincipalsTable';
 
 export default function PrincipalsContainer({

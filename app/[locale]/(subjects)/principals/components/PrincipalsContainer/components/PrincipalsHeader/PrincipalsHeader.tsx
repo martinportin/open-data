@@ -7,5 +7,5 @@ export default function PrincipalsHeader({
 }: Readonly<PrincipalsHeaderProps>) {
   const { t } = useTranslation();
 
-  return <h1>{`${t('numberOf')} (${numberOfPrincipals})`}</h1>;
+  return <h1>{t('principals:numberOfPrincipals', { numberOfPrincipals })}</h1>;
 }
