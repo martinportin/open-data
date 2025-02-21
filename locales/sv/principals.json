@@ -1,7 +1,7 @@
 {
     "municipalAssociation": "Kommunalförbund",
     "nationalAgencyForEducation": "Skolverket",
-    "numberOf": "Antal",
+    "numberOfPrincipals": "Antal huvudmän ({{numberOfPrincipals}})",
     "organizationNumber": "Organisationsnummer",
     "private": "Enskild",
     "public": "Kommunal",

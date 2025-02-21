@@ -20,7 +20,8 @@ export default async function renderPrincipalsContainer(
   );
 
   return {
-    getHeader: () => screen.getByRole('heading', { name: /numberOf \(7\)/i }),
+    getHeader: () =>
+      screen.getByRole('heading', { name: /numberOfPrincipals/i }),
     getDateTimeOfExtract: () =>
       screen.getByText(/yyyy-MM-dd hh:mm:ss/i, { selector: 'time' }),
     getSearchInput: () => screen.getByRole('textbox', { name: /search/i }),

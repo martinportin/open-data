@@ -7,7 +7,7 @@ export default async function renderPrincipalsHeader(
   principalsHeaderProps: PrincipalsHeaderProps
 ) {
   const locale = 'en';
-  const i18nNamespaces = ['principals'];
+  const i18nNamespaces = ['common', 'principals'];
   const { resources } = await initTranslations(locale, i18nNamespaces);
   render(
     <TranslationsProvider
@@ -21,10 +21,6 @@ export default async function renderPrincipalsHeader(
 
   return {
     getHeaderShowingNoPrincipals: () =>
-      screen.getByRole('heading', { name: /numberOf \(0\)/i }),
-    getHeaderShowingThreePrincipals: () =>
-      screen.getByRole('heading', { name: /numberOf \(3\)/i }),
-    getHeaderShowingSevenPrincipals: () =>
-      screen.getByRole('heading', { name: /numberOf \(7\)/i })
+      screen.getByRole('heading', { name: /numberOfPrincipals/i })
   };
 }

@@ -1,7 +1,7 @@
 {
     "municipalAssociation": "Municipal Association",
     "nationalAgencyForEducation": "National Agency For Education",
-    "numberOf": "Number of principals",
+    "numberOfPrincipals": "Number of principals ({{numberOfPrincipals}})",
     "organizationNumber": "Organization number",
     "private": "Private",
     "public": "Public",
