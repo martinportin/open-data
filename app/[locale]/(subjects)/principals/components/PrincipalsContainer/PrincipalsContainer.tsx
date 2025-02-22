@@ -9,9 +9,9 @@ import { PrincipalTypes } from './components/utils/constans';
 
 export default function PrincipalsContainer({
   principals,
-  dateTimeOfExtract,
-  searchInputProps
+  dateTimeOfExtract
 }: Readonly<PrincipalsContainerProps>) {
+  const [searchInputValue, setSearchInputValue] = useState('');
   const [publicCheckboxIsChecked, setPublicCheckboxIsChecked] = useState(true);
   const [
     municipalAssociationCheckboxIsChecked,
@@ -29,6 +29,10 @@ export default function PrincipalsContainer({
   ] = useState(true);
   const [specialSchoolCheckboxIsChecked, setSpecialScoolCheckboxIsChecked] =
     useState(true);
+
+  function handleSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setSearchInputValue(event.target.value);
+  }
 
   const filterCheckboxes = [
     { principalType: 'public', isChecked: publicCheckboxIsChecked },
@@ -49,7 +53,9 @@ export default function PrincipalsContainer({
     }
   ];
 
-  function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleFilterCheckboxChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
     const checkboxId = event.target.id;
 
     switch (checkboxId) {
@@ -92,8 +98,13 @@ export default function PrincipalsContainer({
     ) {
       return [];
     }
-    return principals.filter((principal: Principal) =>
-      thePrincipalTypeIsSelected(principal)
+    return principals.filter(
+      (principal: Principal) =>
+        (principal.Namn.toLowerCase().includes(
+          searchInputValue.toLowerCase()
+        ) ||
+          principal.PeOrgNr.includes(searchInputValue)) &&
+        thePrincipalTypeIsSelected(principal)
     );
   }
 
@@ -121,9 +132,10 @@ export default function PrincipalsContainer({
       />
       <PrincipalsDateTimeOfExtract dateTimeOfExtract={dateTimeOfExtract} />
       <PrincipalsToolbar
-        searchInputProps={searchInputProps}
+        searchInputValue={searchInputValue}
+        handleInputChange={handleSearchInputChange}
         filterCheckboxes={filterCheckboxes}
-        handleCheckboxChange={handleCheckboxChange}
+        handleCheckboxChange={handleFilterCheckboxChange}
       />
       <PrincipalsTable principals={getFilteredPrincipals(principals)} />
     </>
