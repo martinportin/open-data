@@ -6,7 +6,11 @@ export default function FilterCheckbox({
   principalType,
   isChecked,
   handleCheckboxChange
-}: Readonly<FilterCheckboxProps>) {
+}: Readonly<{
+  principalType: string;
+  isChecked: boolean;
+  handleChecboxchange: ChangeEventHandler<HTMLInputElement>;
+}>) {
   const { t } = useTranslation();
   return (
     <label>

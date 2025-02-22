@@ -1,15 +1,27 @@
 import PrincipalsToolbar from '../../../PrincipalsToolbar';
 import { render, screen } from '@testing-library/react';
+import TranslationsProvider from '@/app/components/TranslationsProvider';
+import initTranslations from '@/app/i18n';
 
-export default function renderPrincipalsToolbar(
+export default async function renderPrincipalsToolbar(
   searchInputProps: SearchInputProps,
   filterCheckboxProps: FilterCheckboxProps[]
 ) {
+  const locale = 'en';
+  const i18nNamespaces = ['principals'];
+  const { resources } = await initTranslations(locale, i18nNamespaces);
   render(
-    <PrincipalsToolbar
-      searchInputProps={searchInputProps}
-      filterCheckboxProps={filterCheckboxProps}
-    />
+    <TranslationsProvider
+      locale={locale}
+      namespaces={i18nNamespaces}
+      resources={resources}
+    >
+      <PrincipalsToolbar
+        searchInputProps={searchInputProps}
+        filterCheckboxes={filterCheckboxProps}
+        handleCheckboxChange={() => jest.fn()}
+      />
+    </TranslationsProvider>
   );
 
   return {

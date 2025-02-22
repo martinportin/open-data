@@ -12,12 +12,12 @@ interface SearchInputProps {
 interface FilterCheckboxProps {
   principalType: string;
   isChecked: boolean;
-  handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 interface PrincipalToolbarProps {
   searchInputProps: SearchInputProps;
-  filterCheckboxProps: FilterCheckboxProps[];
+  filterCheckboxes: FilterCheckboxProps[];
+  handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
 }
 
 interface PrincipalTableHeaderProps {
@@ -42,5 +42,4 @@ interface PrincipalsContainerProps {
   principals: Principal[];
   dateTimeOfExtract: string;
   searchInputProps: SearchInputProps;
-  filterCheckboxProps: FilterCheckboxProps[];
 }
