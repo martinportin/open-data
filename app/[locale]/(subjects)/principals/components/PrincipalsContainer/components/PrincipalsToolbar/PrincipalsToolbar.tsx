@@ -3,17 +3,18 @@ import SearchInput from './components/SearchInput';
 
 export default function PrincipalsToolbar({
   searchInputProps,
-  filterCheckboxProps
+  filterCheckboxes,
+  handleCheckboxChange
 }: Readonly<PrincipalToolbarProps>) {
   const { searchInputValue, handleInputChange } = searchInputProps;
-  const filterCheckboxes = filterCheckboxProps.map(
-    (filterCheckboxProp: FilterCheckboxProps) => {
-      const { principalType, isChecked, handleCheckboxChange } =
-        filterCheckboxProp;
+
+  const checkboxes = filterCheckboxes.map(
+    (filterCheckboxProp: { principalType: string; isChecked: boolean }) => {
+      const { principalType, isChecked } = filterCheckboxProp;
 
       return (
         <FilterCheckbox
-          key={filterCheckboxProp.principalType}
+          key={principalType}
           principalType={principalType}
           isChecked={isChecked}
           handleCheckboxChange={handleCheckboxChange}
@@ -28,7 +29,7 @@ export default function PrincipalsToolbar({
         searchInputValue={searchInputValue}
         handleInputChange={handleInputChange}
       />
-      {filterCheckboxes}
+      {checkboxes}
     </menu>
   );
 }

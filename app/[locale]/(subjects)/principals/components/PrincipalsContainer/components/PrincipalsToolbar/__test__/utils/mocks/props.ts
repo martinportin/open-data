@@ -12,16 +12,14 @@ export const searchInputProps = {
 };
 
 export const filterCheckboxPropsSmall = [
-  filterCheckboxProps,
+  { principalType: 'principalType0', isChecked: true },
   {
     principalType: 'principalType1',
-    isChecked: true,
-    handleFilterCheckboxChange: jest.fn()
+    isChecked: true
   },
   {
     principalType: 'principalType2',
-    isChecked: true,
-    handleFilterCheckboxChange: jest.fn()
+    isChecked: true
   }
 ];
 
@@ -29,22 +27,18 @@ export const filterCheckboxPropsLarge = [
   ...filterCheckboxPropsSmall,
   {
     principalType: 'principalType3',
-    isChecked: true,
-    handleFilterCheckboxChange: jest.fn()
+    isChecked: true
   },
   {
     principalType: 'principalType4',
-    isChecked: true,
-    handleFilterCheckboxChange: jest.fn()
+    isChecked: true
   },
   {
     principalType: 'principalType5',
-    isChecked: true,
-    handleFilterCheckboxChange: jest.fn()
+    isChecked: true
   },
   {
     principalType: 'principalType6',
-    isChecked: true,
-    handleFilterCheckboxChange: jest.fn()
+    isChecked: true
   }
 ];

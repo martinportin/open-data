@@ -25,7 +25,8 @@ export default async function renderPrincipalsContainer(
     getDateTimeOfExtract: () =>
       screen.getByText(/yyyy-MM-dd hh:mm:ss/i, { selector: 'time' }),
     getSearchInput: () => screen.getByRole('textbox', { name: /search/i }),
-    getFilterCheckbox: () => screen.getAllByRole('checkbox'),
-    getTable: () => screen.getByRole('table')
+    getFilterCheckboxes: () => screen.getAllByRole('checkbox'),
+    getTable: () => screen.getByRole('table'),
+    getTableRows: () => screen.getAllByRole('row').slice(1)
   };
 }

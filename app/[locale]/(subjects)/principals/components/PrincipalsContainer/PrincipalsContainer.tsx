@@ -4,22 +4,128 @@ import PrincipalsHeader from './components/PrincipalsHeader/PrincipalsHeader';
 import PrincipalsDateTimeOfExtract from './components/PrincipalsDateTimeOfExtract/PrincipalsDateTimeOfExtract';
 import PrincipalsToolbar from './components/PrincipalsToolbar/PrincipalsToolbar';
 import PrincipalsTable from './components/PrincipalsTable/PrincipalsTable';
+import React, { useState } from 'react';
+import { PrincipalTypes } from './components/utils/constans';
 
 export default function PrincipalsContainer({
   principals,
   dateTimeOfExtract,
-  searchInputProps,
-  filterCheckboxProps
+  searchInputProps
 }: Readonly<PrincipalsContainerProps>) {
+  const [publicCheckboxIsChecked, setPublicCheckboxIsChecked] = useState(true);
+  const [
+    municipalAssociationCheckboxIsChecked,
+    setMunicpalAssociationCheckboxIsChecked
+  ] = useState(true);
+  const [regionalCheckboxIsChecked, setRegionalCheckboxIsCheked] =
+    useState(true);
+  const [privateCheckboxIsChecked, setPrivateCheckoboxIsChecked] =
+    useState(true);
+  const [samiSchoolCheckboxIsChecked, setSamiSchoolCheckboxIsChecked] =
+    useState(true);
+  const [
+    nationalAgencyForEducationCheckboxIsChecked,
+    setNationalAgencyForEducationCheckboxIsChecked
+  ] = useState(true);
+  const [specialSchoolCheckboxIsChecked, setSpecialScoolCheckboxIsChecked] =
+    useState(true);
+
+  const filterCheckboxes = [
+    { principalType: 'public', isChecked: publicCheckboxIsChecked },
+    {
+      principalType: 'municipalAssociation',
+      isChecked: municipalAssociationCheckboxIsChecked
+    },
+    { principalType: 'regional', isChecked: regionalCheckboxIsChecked },
+    { principalType: 'private', isChecked: privateCheckboxIsChecked },
+    { principalType: 'samiSchool', isChecked: samiSchoolCheckboxIsChecked },
+    {
+      principalType: 'nationalAgencyForEducation',
+      isChecked: nationalAgencyForEducationCheckboxIsChecked
+    },
+    {
+      principalType: 'specialSchool',
+      isChecked: specialSchoolCheckboxIsChecked
+    }
+  ];
+
+  function handleCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const checkboxId = event.target.id;
+
+    switch (checkboxId) {
+      case 'publicCheckbox':
+        setPublicCheckboxIsChecked(!publicCheckboxIsChecked);
+        break;
+      case 'municipalAssociationCheckbox':
+        setMunicpalAssociationCheckboxIsChecked(
+          !municipalAssociationCheckboxIsChecked
+        );
+        break;
+      case 'regionalCheckbox':
+        setRegionalCheckboxIsCheked(!regionalCheckboxIsChecked);
+        break;
+      case 'privateCheckbox':
+        setPrivateCheckoboxIsChecked(!privateCheckboxIsChecked);
+        break;
+      case 'samiSchoolCheckbox':
+        setSamiSchoolCheckboxIsChecked(!samiSchoolCheckboxIsChecked);
+        break;
+      case 'nationalAgencyForEducationCheckbox':
+        setNationalAgencyForEducationCheckboxIsChecked(
+          !nationalAgencyForEducationCheckboxIsChecked
+        );
+        break;
+      case 'specialSchoolCheckbox':
+        setSpecialScoolCheckboxIsChecked(!specialSchoolCheckboxIsChecked);
+    }
+  }
+
+  function getFilteredPrincipals(principals: Principal[]) {
+    if (
+      !publicCheckboxIsChecked &&
+      !municipalAssociationCheckboxIsChecked &&
+      !regionalCheckboxIsChecked &&
+      !privateCheckboxIsChecked &&
+      !samiSchoolCheckboxIsChecked &&
+      !nationalAgencyForEducationCheckboxIsChecked &&
+      !specialSchoolCheckboxIsChecked
+    ) {
+      return [];
+    }
+    return principals.filter((principal: Principal) =>
+      thePrincipalTypeIsSelected(principal)
+    );
+  }
+
+  function thePrincipalTypeIsSelected(principal: Principal): boolean {
+    return (
+      (principal.Typ === PrincipalTypes.PUBLIC && publicCheckboxIsChecked) ||
+      (principal.Typ === PrincipalTypes.MUNICIPAL_ASSOCIATION &&
+        municipalAssociationCheckboxIsChecked) ||
+      (principal.Typ === PrincipalTypes.REGIONAL &&
+        regionalCheckboxIsChecked) ||
+      (principal.Typ === PrincipalTypes.PRIVATE && privateCheckboxIsChecked) ||
+      (principal.Typ === PrincipalTypes.SAMI_SCHOOL &&
+        samiSchoolCheckboxIsChecked) ||
+      (principal.Typ === PrincipalTypes.NATIONAL_AGENCY_FOR_EDUCATION &&
+        nationalAgencyForEducationCheckboxIsChecked) ||
+      (principal.Typ === PrincipalTypes.SPECIAL_SCHOOL &&
+        specialSchoolCheckboxIsChecked)
+    );
+  }
+
   return (
     <>
-      <PrincipalsHeader numberOfPrincipals={principals.length} />
+      <PrincipalsHeader
+        numberOfPrincipals={getFilteredPrincipals(principals).length}
+      />
       <PrincipalsDateTimeOfExtract dateTimeOfExtract={dateTimeOfExtract} />
       <PrincipalsToolbar
         searchInputProps={searchInputProps}
-        filterCheckboxProps={filterCheckboxProps}
+        filterCheckboxes={filterCheckboxes}
+        handleCheckboxChange={handleCheckboxChange}
       />
-      <PrincipalsTable principals={principals} />
+      <PrincipalsTable principals={getFilteredPrincipals(principals)} />
     </>
   );
 }
