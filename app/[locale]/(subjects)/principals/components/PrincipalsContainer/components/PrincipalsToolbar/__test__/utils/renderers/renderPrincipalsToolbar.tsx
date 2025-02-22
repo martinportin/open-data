@@ -17,9 +17,10 @@ export default async function renderPrincipalsToolbar(
       resources={resources}
     >
       <PrincipalsToolbar
-        searchInputProps={searchInputProps}
+        searchInputValue=""
+        handleInputChange={jest.fn()}
         filterCheckboxes={filterCheckboxProps}
-        handleCheckboxChange={() => jest.fn()}
+        handleCheckboxChange={jest.fn()}
       />
     </TranslationsProvider>
   );

@@ -9,7 +9,7 @@ export default function FilterCheckbox({
 }: Readonly<{
   principalType: string;
   isChecked: boolean;
-  handleChecboxchange: ChangeEventHandler<HTMLInputElement>;
+  handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
 }>) {
   const { t } = useTranslation();
   return (

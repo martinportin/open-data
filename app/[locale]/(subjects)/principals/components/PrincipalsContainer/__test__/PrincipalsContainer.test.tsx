@@ -24,6 +24,33 @@ describe('principals container', () => {
     expect(getSearchInput()).toBeInTheDocument();
   });
 
+  test('should update the search input on typing', async () => {
+    const { getSearchInput } = await renderPrincipalsContainer({
+      ...principalsContainerProps
+    });
+    expect(getSearchInput()).toHaveValue('');
+    await userEvent.type(getSearchInput(), 'principal');
+    expect(getSearchInput()).toHaveValue('principal');
+  });
+
+  test('should filter the principals on "Name" on typing', async () => {
+    const { getTableRows, getSearchInput } = await renderPrincipalsContainer({
+      ...principalsContainerProps
+    });
+    expect(getTableRows()).toHaveLength(7);
+    await userEvent.type(getSearchInput(), 'Principal 0');
+    expect(getTableRows()).toHaveLength(1);
+  });
+
+  test('should filter the principals on "Organization Number" on typing', async () => {
+    const { getTableRows, getSearchInput } = await renderPrincipalsContainer({
+      ...principalsContainerProps
+    });
+    expect(getTableRows()).toHaveLength(7);
+    await userEvent.type(getSearchInput(), '0000000003');
+    expect(getTableRows()).toHaveLength(1);
+  });
+
   test('should display seven filter checkboxes', async () => {
     const { getFilterCheckboxes } = await renderPrincipalsContainer({
       ...principalsContainerProps

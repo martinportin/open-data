@@ -2,12 +2,16 @@ import FilterCheckbox from './components/FilterCheckbox';
 import SearchInput from './components/SearchInput';
 
 export default function PrincipalsToolbar({
-  searchInputProps,
+  searchInputValue,
+  handleInputChange,
   filterCheckboxes,
   handleCheckboxChange
-}: Readonly<PrincipalToolbarProps>) {
-  const { searchInputValue, handleInputChange } = searchInputProps;
-
+}: Readonly<{
+  searchInputValue: string;
+  handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
+  filterCheckboxes: { principalType: string; isChecked: boolean }[];
+  handleCheckboxChange: React.ChangeEventHandler<HTMLInputElement>;
+}>) {
   const checkboxes = filterCheckboxes.map(
     (filterCheckboxProp: { principalType: string; isChecked: boolean }) => {
       const { principalType, isChecked } = filterCheckboxProp;
