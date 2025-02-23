@@ -5,7 +5,7 @@ import PrincipalsDateTimeOfExtract from './components/PrincipalsDateTimeOfExtrac
 import PrincipalsToolbar from './components/PrincipalsToolbar/PrincipalsToolbar';
 import PrincipalsTable from './components/PrincipalsTable/PrincipalsTable';
 import React, { useState } from 'react';
-import { PrincipalTypes } from './components/utils/constans';
+import { PrincipalTypes } from './components/utils/constans/PrincipalTypes';
 
 export default function PrincipalsContainer({
   principals,
