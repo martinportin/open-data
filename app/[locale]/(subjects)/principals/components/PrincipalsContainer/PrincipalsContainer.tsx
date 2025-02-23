@@ -10,7 +10,7 @@ import { PrincipalTypes } from './components/utils/constans';
 export default function PrincipalsContainer({
   principals,
   dateTimeOfExtract
-}: Readonly<PrincipalsContainerProps>) {
+}: Readonly<PrincipalsContainerProps>): React.JSX.Element {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [publicCheckboxIsChecked, setPublicCheckboxIsChecked] = useState(true);
   const [
@@ -30,7 +30,9 @@ export default function PrincipalsContainer({
   const [specialSchoolCheckboxIsChecked, setSpecialScoolCheckboxIsChecked] =
     useState(true);
 
-  function handleSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleSearchInputChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void {
     setSearchInputValue(event.target.value);
   }
 
@@ -55,7 +57,7 @@ export default function PrincipalsContainer({
 
   function handleFilterCheckboxChange(
     event: React.ChangeEvent<HTMLInputElement>
-  ) {
+  ): void {
     const checkboxId = event.target.id;
 
     switch (checkboxId) {
@@ -86,7 +88,7 @@ export default function PrincipalsContainer({
     }
   }
 
-  function getFilteredPrincipals(principals: Principal[]) {
+  function getFilteredPrincipals(principals: Principal[]): Principal[] {
     if (
       !publicCheckboxIsChecked &&
       !municipalAssociationCheckboxIsChecked &&
