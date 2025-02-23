@@ -24,7 +24,7 @@ describe('principals container', () => {
     expect(getSearchInput()).toBeInTheDocument();
   });
 
-  test('should update the search input on typing', async () => {
+  test('should update the search input when typing', async () => {
     const { getSearchInput } = await renderPrincipalsContainer({
       ...principalsContainerProps
     });
@@ -33,22 +33,26 @@ describe('principals container', () => {
     expect(getSearchInput()).toHaveValue('principal');
   });
 
-  test('should filter the principals on "Name" on typing', async () => {
+  test('should filter the principals on "Name" when typing', async () => {
     const { getTableRows, getSearchInput } = await renderPrincipalsContainer({
       ...principalsContainerProps
     });
     expect(getTableRows()).toHaveLength(7);
     await userEvent.type(getSearchInput(), 'Principal 0');
     expect(getTableRows()).toHaveLength(1);
+    await userEvent.clear(getSearchInput());
+    expect(getTableRows()).toHaveLength(7);
   });
 
-  test('should filter the principals on "Organization Number" on typing', async () => {
+  test('should filter the principals on "Organization Number" when typing', async () => {
     const { getTableRows, getSearchInput } = await renderPrincipalsContainer({
       ...principalsContainerProps
     });
     expect(getTableRows()).toHaveLength(7);
     await userEvent.type(getSearchInput(), '0000000003');
     expect(getTableRows()).toHaveLength(1);
+    await userEvent.clear(getSearchInput());
+    expect(getTableRows()).toHaveLength(7);
   });
 
   test('should display seven filter checkboxes', async () => {

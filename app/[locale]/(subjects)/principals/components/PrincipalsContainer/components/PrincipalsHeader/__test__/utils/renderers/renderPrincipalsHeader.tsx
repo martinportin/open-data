@@ -1,26 +1,25 @@
 import { render, screen } from '@testing-library/react';
-import initTranslations from '@/app/i18n';
-import TranslationsProvider from '@/app/components/TranslationsProvider';
 import PrincipalsHeader from '../../../PrincipalsHeader';
+import { useTranslation } from 'react-i18next';
+
+jest.mock('react-i18next', () => ({
+  useTranslation: jest.fn()
+}));
+
+const useTranslationSpy = useTranslation;
+const tSpy = jest.fn((tKey) => tKey);
+useTranslationSpy.mockReturnValue({
+  t: tSpy
+});
 
 export default async function renderPrincipalsHeader(
   principalsHeaderProps: PrincipalsHeaderProps
 ) {
-  const locale = 'en';
-  const i18nNamespaces = ['common', 'principals'];
-  const { resources } = await initTranslations(locale, i18nNamespaces);
-  render(
-    <TranslationsProvider
-      locale={locale}
-      namespaces={i18nNamespaces}
-      resources={resources}
-    >
-      <PrincipalsHeader {...principalsHeaderProps} />
-    </TranslationsProvider>
-  );
+  render(<PrincipalsHeader {...principalsHeaderProps} />);
 
   return {
     getHeaderShowingNoPrincipals: () =>
-      screen.getByRole('heading', { name: /numberOfPrincipals/i })
+      screen.getByRole('heading', { name: /numberOfPrincipals/i }),
+    getTSpy: () => tSpy
   };
 }
