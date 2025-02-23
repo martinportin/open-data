@@ -10,7 +10,10 @@ import { PrincipalTypes } from './components/utils/constans';
 export default function PrincipalsContainer({
   principals,
   dateTimeOfExtract
-}: Readonly<PrincipalsContainerProps>): React.JSX.Element {
+}: Readonly<{
+  prinicplas: Principal[];
+  dateTimeOfExtract: string;
+}>): React.JSX.Element {
   const [searchInputValue, setSearchInputValue] = useState('');
   const [publicCheckboxIsChecked, setPublicCheckboxIsChecked] = useState(true);
   const [

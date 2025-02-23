@@ -5,7 +5,10 @@ import { useTranslation } from 'react-i18next';
 export default function SearchInput({
   searchInputValue,
   handleInputChange
-}: Readonly<SearchInputProps>) {
+}: Readonly<{
+  searchInputValue: string;
+  handleInputChange: React.EventHandler<HTMLInputElement>;
+}>) {
   const { t } = useTranslation();
 
   return (
