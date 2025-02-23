@@ -3,7 +3,7 @@ import PrincipalsTableBody from './components/PrincipalsTableBody';
 
 export default function PrincipalsTable({
   principals
-}: Readonly<PrincipalsTableProps>) {
+}: Readonly<{ principals: Principal[] }>) {
   return (
     <table>
       <PrincipalsTableHeader />
