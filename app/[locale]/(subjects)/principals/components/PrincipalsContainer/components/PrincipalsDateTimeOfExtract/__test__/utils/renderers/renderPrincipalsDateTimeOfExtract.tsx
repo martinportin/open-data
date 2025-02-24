@@ -2,11 +2,13 @@ import { render, screen } from '@testing-library/react';
 import PrincipalsDateTimeOfExtract from '../../../PrincipalsDateTimeOfExtract';
 
 export default function renderPrincipalsDateTimeOfExtract() {
-  const dateTimeOfExtract = 'hh:mm:ss dd:MM:yyyy';
+  const dateTimeOfExtract = 'Monday, 01 January, 2025 at 12:00:00 PM';
   render(<PrincipalsDateTimeOfExtract dateTimeOfExtract={dateTimeOfExtract} />);
 
   return {
     getDateTimeOfExtract: () =>
-      screen.getByText(/hh:mm:ss dd:MM:yyyy/i, { selector: 'time' })
+      screen.getByText(/Monday, 01 January, 2025 at 12:00:00 PM/i, {
+        selector: 'time'
+      })
   };
 }
