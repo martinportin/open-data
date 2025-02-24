@@ -1,6 +1,8 @@
 import Principals from '../utils/classes/Principals';
 import { SWEDISH_NATIONAL_AGENCY_FOR_EDUCATION_API } from '../utils/constants/apis';
 
+function test() {}
+
 export default async function getPrincipals(): Promise<Principals> {
   const ONE_HOUR: number = 36000;
   const response = await fetch(
