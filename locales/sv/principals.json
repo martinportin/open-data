@@ -1,5 +1,6 @@
 {
     "municipalAssociation": "Kommunalförbund",
+    "name": "Namn",
     "nationalAgencyForEducation": "Skolverket",
     "numberOfPrincipals": "Antal huvudmän ({{numberOfPrincipals}})",
     "organizationNumber": "Organisationsnummer",
@@ -7,5 +8,6 @@
     "public": "Kommunal",
     "regional": "Region",
     "samiSchool": "Sameskolan",
-    "specialSchool": "Specialskola"
+    "specialSchool": "Specialskola",
+    "type": "Typ"
 }

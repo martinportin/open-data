@@ -1,5 +1,6 @@
 {
     "municipalAssociation": "Municipal Association",
+    "name": "Name",
     "nationalAgencyForEducation": "National Agency For Education",
     "numberOfPrincipals": "Number of principals ({{numberOfPrincipals}})",
     "organizationNumber": "Organization number",
@@ -7,5 +8,6 @@
     "public": "Public",
     "regional": "Regional",
     "samiSchool": "Sami School",
-    "specialSchool": "National Agency for Special Needs Education and Schools"
+    "specialSchool": "National Agency for Special Needs Education and Schools",
+    "type": "Type"
 }

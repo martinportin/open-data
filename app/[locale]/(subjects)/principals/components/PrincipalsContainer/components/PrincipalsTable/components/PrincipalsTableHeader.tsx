@@ -7,9 +7,9 @@ export default function PrincipalsTableHeader() {
   return (
     <thead>
       <tr>
-        <th>{t('organizationNumber')}</th>
-        <th>{t('name')}</th>
-        <th>{t('type')}</th>
+        <th>{t('principals:organizationNumber')}</th>
+        <th>{t('principals:name')}</th>
+        <th>{t('principals:type')}</th>
       </tr>
     </thead>
   );
