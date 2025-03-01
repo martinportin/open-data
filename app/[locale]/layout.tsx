@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import './globals.css';
+//import './globals.css';
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
+import NavigationBar from './components/NavigationBar';
 
 export const metadata: Metadata = {
   title: 'Main Page - Open data',
@@ -22,7 +23,10 @@ export default async function RootLayout({
   const { locale } = await params;
   return (
     <html lang={locale} dir={dir(locale)}>
-      <body>{children}</body>
+      <body>
+        <NavigationBar locale={locale} />
+        {children}
+      </body>
     </html>
   );
 }
