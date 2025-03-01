@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 export default function PrincipalsTableHeader() {
   const { t } = useTranslation();
+
   return (
     <thead>
       <tr>
