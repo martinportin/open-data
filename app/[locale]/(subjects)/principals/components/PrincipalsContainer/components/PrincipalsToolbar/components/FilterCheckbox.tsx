@@ -14,7 +14,7 @@ export default function FilterCheckbox({
   const { t } = useTranslation();
   return (
     <label>
-      {t(`${principalType}`)}:
+      {t(`principals:${principalType}`)}:
       <input
         id={`${principalType}Checkbox`}
         type="checkbox"

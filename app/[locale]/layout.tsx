@@ -4,8 +4,8 @@ import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
 
 export const metadata: Metadata = {
-  title: 'Open data',
-  description: 'Present data from open sources'
+  title: 'Main Page - Open data',
+  description: 'Presents data from open sources'
 };
 
 export function generateStaticParams(): { locale: string }[] {
