@@ -14,12 +14,12 @@ const sevenPrincipals = [
 
 const dateTimeOfExtract = 'yyyy-MM-dd hh:mm:ss';
 
-const searchInputProps: SearchInputProps = {
+const searchInputProps = {
   searchInputValue: '',
   handleInputChange: jest.fn()
 };
 
-export const principalsContainerProps: PrincipalsContainerProps = {
+export const principalsContainerProps = {
   principals: sevenPrincipals,
   dateTimeOfExtract,
   searchInputProps

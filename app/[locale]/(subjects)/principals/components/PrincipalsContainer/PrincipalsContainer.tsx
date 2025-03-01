@@ -11,7 +11,7 @@ export default function PrincipalsContainer({
   principals,
   dateTimeOfExtract
 }: Readonly<{
-  prinicplas: Principal[];
+  principals: Principal[];
   dateTimeOfExtract: string;
 }>): React.JSX.Element {
   const [searchInputValue, setSearchInputValue] = useState('');
