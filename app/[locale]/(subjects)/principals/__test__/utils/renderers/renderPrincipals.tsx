@@ -14,6 +14,9 @@ export default async function renderPrincipals() {
       screen.getByText(/Sunday, October 13, 2024 at 1:00:03 AM/i, {
         selector: 'time'
       }),
-    getPrincipalsTable: () => screen.getByRole('table')
+    getPrincipalsTable: () => screen.getByRole('table'),
+    getErrorHeader: () =>
+      screen.getByRole('heading', { name: /thereHasBeenAnError/i }),
+    getErrorInformation: () => screen.getByText(/Http 404 - Not Found/i)
   };
 }

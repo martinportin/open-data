@@ -12,10 +12,10 @@ useTranslationSpy.mockReturnValue({
   t: tSpy
 });
 
-export default async function renderPrincipalsHeader(
-  principalsHeaderProps: PrincipalsHeaderProps
-) {
-  render(<PrincipalsHeader {...principalsHeaderProps} />);
+export default async function renderPrincipalsHeader({
+  numberOfPrincipals
+}: Readonly<{ numberOfPrincipals: number }>) {
+  render(<PrincipalsHeader numberOfPrincipals={numberOfPrincipals} />);
 
   return {
     getHeaderShowingNoPrincipals: () =>
