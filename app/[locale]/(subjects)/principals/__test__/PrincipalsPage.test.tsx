@@ -3,11 +3,11 @@ import renderPrincipalsPage from './utils/renderers/renderPrincipals';
 import { principalsExtract } from './utils/mocks';
 
 describe('principals page', () => {
-  beforeEach(() => {
+  beforeAll(() => {
     setUpNock();
   });
 
-  afterEach(() => {
+  afterAll(() => {
     clearNock();
   });
 
@@ -26,11 +26,37 @@ describe('principals page', () => {
     expect(getPrincipalsTable()).toBeInTheDocument();
   });
 
+  test('should display an error message', async () => {
+    const { getErrorHeader } = await renderPrincipalsPage();
+    expect(getErrorHeader()).toBeInTheDocument();
+  });
+
+  test('should display error information', async () => {
+    const { getErrorInformation } = await renderPrincipalsPage();
+    expect(getErrorInformation()).toBeInTheDocument();
+  });
+
   function setUpNock() {
     nock.cleanAll();
     nock('https://api.skolverket.se')
       .get(/\/skolenhetsregistret\/v1\/huvudman/)
-      .reply(200, JSON.stringify(principalsExtract));
+      .reply(200, principalsExtract);
+
+    nock('https://api.skolverket.se')
+      .get(/\/skolenhetsregistret\/v1\/huvudman/)
+      .reply(200, principalsExtract);
+
+    nock('https://api.skolverket.se')
+      .get(/\/skolenhetsregistret\/v1\/huvudman/)
+      .reply(200, principalsExtract);
+
+    nock('https://api.skolverket.se')
+      .get(/\/skolenhetsregistret\/v1\/huvudman/)
+      .reply(404, {});
+
+    nock('https://api.skolverket.se')
+      .get(/\/skolenhetsregistret\/v1\/huvudman/)
+      .reply(404, { Message: 'Not Found' });
   }
 
   function clearNock() {

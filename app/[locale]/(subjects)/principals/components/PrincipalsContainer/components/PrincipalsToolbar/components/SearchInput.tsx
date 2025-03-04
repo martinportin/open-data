@@ -7,7 +7,7 @@ export default function SearchInput({
   handleInputChange
 }: Readonly<{
   searchInputValue: string;
-  handleInputChange: React.EventHandler<HTMLInputElement>;
+  handleInputChange: React.ChangeEventHandler<HTMLInputElement>;
 }>) {
   const { t } = useTranslation();
 

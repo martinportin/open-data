@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-//import './globals.css';
 import i18nConfig from '@/i18nConfig';
 import { dir } from 'i18next';
 import NavigationBar from './components/NavigationBar';
