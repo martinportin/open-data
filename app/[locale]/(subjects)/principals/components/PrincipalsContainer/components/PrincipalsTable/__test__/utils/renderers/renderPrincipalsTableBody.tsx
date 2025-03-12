@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import PrincipalsTableBody from '../../../components/PrincipalsTableBody';
 
 export function renderPrincipalsTableBody(
-  principalsTableBodyProps: PrincipalTableBodyProps
+  principalsTableBodyProps: Readonly<{ principals: Principal[] }>
 ) {
   const table = document.createElement('table');
   render(<PrincipalsTableBody {...principalsTableBodyProps} />, {

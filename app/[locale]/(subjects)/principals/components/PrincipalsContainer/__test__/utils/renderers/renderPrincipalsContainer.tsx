@@ -4,7 +4,10 @@ import TranslationsProvider from '@/app/components/TranslationsProvider';
 import PrincipalsContainer from '../../../PrincipalsContainer';
 
 export default async function renderPrincipalsContainer(
-  principalsContainerProps: Readonly<PrincipalsContainerProps>
+  principalsContainerProps: Readonly<{
+    principals: Principal[];
+    dateTimeOfExtract: string;
+  }>
 ) {
   const locale = 'en';
   const i18nNamespaces = ['principals'];
