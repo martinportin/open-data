@@ -1,16 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import PrincipalsHeader from '../../../PrincipalsHeader';
-import { useTranslation } from 'react-i18next';
 
-jest.mock('react-i18next', () => ({
-  useTranslation: jest.fn()
-}));
-
-const useTranslationSpy = useTranslation;
 const tSpy = jest.fn((tKey) => tKey);
-useTranslationSpy.mockReturnValue({
-  t: tSpy
-});
+const useTranslationResponse = { t: tSpy };
+jest.mock('react-i18next', () => ({
+  useTranslation: () => useTranslationResponse
+}));
 
 export default async function renderPrincipalsHeader({
   numberOfPrincipals
