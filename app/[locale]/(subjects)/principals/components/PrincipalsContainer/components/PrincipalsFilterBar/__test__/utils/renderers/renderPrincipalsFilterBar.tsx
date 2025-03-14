@@ -1,11 +1,10 @@
-import PrincipalsToolbar from '../../../PrincipalsToolbar';
+import PrincipalsFilterBar from '../../../PrincipalsFilterBar';
 import { render, screen } from '@testing-library/react';
 import TranslationsProvider from '@/app/components/TranslationsProvider';
 import initTranslations from '@/app/i18n';
 
-export default async function renderPrincipalsToolbar(
-  searchInputProps: SearchInputProps,
-  filterCheckboxProps: FilterCheckboxProps[]
+export default async function renderPrincipalsFilterBar(
+  filterCheckboxProps: { principalType: string; isChecked: boolean }[]
 ) {
   const locale = 'en';
   const i18nNamespaces = ['principals'];
@@ -16,7 +15,7 @@ export default async function renderPrincipalsToolbar(
       namespaces={i18nNamespaces}
       resources={resources}
     >
-      <PrincipalsToolbar
+      <PrincipalsFilterBar
         searchInputValue=""
         handleInputChange={jest.fn()}
         filterCheckboxes={filterCheckboxProps}

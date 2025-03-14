@@ -1,6 +1,5 @@
-import renderPrincipalsToolbar from './utils/renderers/renderPrincipalsToolbar';
+import renderPrincipalsFilterBar from './utils/renderers/renderPrincipalsFilterBar';
 import {
-  searchInputProps,
   filterCheckboxPropsEmpty,
   filterCheckboxPropsSmall,
   filterCheckboxPropsLarge
@@ -8,32 +7,28 @@ import {
 
 describe('principals toolbar', () => {
   test('should display a search input', async () => {
-    const { getSearchInput } = await renderPrincipalsToolbar(
-      searchInputProps,
+    const { getSearchInput } = await renderPrincipalsFilterBar(
       filterCheckboxPropsEmpty
     );
     expect(getSearchInput()).toBeInTheDocument();
   });
 
   test('should display no checkboxes', async () => {
-    const { getSingleFilterCheckbox } = await renderPrincipalsToolbar(
-      searchInputProps,
+    const { getSingleFilterCheckbox } = await renderPrincipalsFilterBar(
       filterCheckboxPropsEmpty
     );
     expect(getSingleFilterCheckbox()).not.toBeInTheDocument();
   });
 
   test('should render three filter checkboxes', async () => {
-    const { getFilterCheckboxes } = await renderPrincipalsToolbar(
-      searchInputProps,
+    const { getFilterCheckboxes } = await renderPrincipalsFilterBar(
       filterCheckboxPropsSmall
     );
     expect(getFilterCheckboxes()).toHaveLength(3);
   });
 
   test('should render six filter checkboxes', async () => {
-    const { getFilterCheckboxes } = await renderPrincipalsToolbar(
-      searchInputProps,
+    const { getFilterCheckboxes } = await renderPrincipalsFilterBar(
       filterCheckboxPropsLarge
     );
     expect(getFilterCheckboxes()).toHaveLength(7);
