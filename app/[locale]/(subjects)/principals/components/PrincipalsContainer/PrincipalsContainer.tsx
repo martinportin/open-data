@@ -2,7 +2,7 @@
 
 import PrincipalsHeader from './components/PrincipalsHeader/PrincipalsHeader';
 import PrincipalsDateTimeOfExtract from './components/PrincipalsDateTimeOfExtract/PrincipalsDateTimeOfExtract';
-import PrincipalsToolbar from './components/PrincipalsToolbar/PrincipalsToolbar';
+import PrincipalsFilterBar from './components/PrincipalsFilterBar/PrincipalsFilterBar';
 import PrincipalsTable from './components/PrincipalsTable/PrincipalsTable';
 import React, { useState } from 'react';
 import { PrincipalTypes } from './components/utils/constans/PrincipalTypes';
@@ -136,7 +136,7 @@ export default function PrincipalsContainer({
         numberOfPrincipals={getFilteredPrincipals(principals).length}
       />
       <PrincipalsDateTimeOfExtract dateTimeOfExtract={dateTimeOfExtract} />
-      <PrincipalsToolbar
+      <PrincipalsFilterBar
         searchInputValue={searchInputValue}
         handleInputChange={handleSearchInputChange}
         filterCheckboxes={filterCheckboxes}
