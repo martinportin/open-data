@@ -1,11 +1,10 @@
-'use client';
+import initTranslations from '@/app/i18n';
 
-import { useTranslation } from 'react-i18next';
+export default async function PrincipalsHeader({
+  locale
+}: Readonly<{ locale: string }>) {
+  const i18nNamespaces = ['principals'];
+  const { t } = await initTranslations(locale, i18nNamespaces);
 
-export default function PrincipalsHeader({
-  numberOfPrincipals
-}: Readonly<{ numberOfPrincipals: number }>) {
-  const { t } = useTranslation();
-
-  return <h1>{t('principals:numberOfPrincipals', { numberOfPrincipals })}</h1>;
+  return <h1>{t('principals')}</h1>;
 }

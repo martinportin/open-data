@@ -1,6 +1,5 @@
 'use client';
 
-import PrincipalsHeader from './components/PrincipalsHeader/PrincipalsHeader';
 import PrincipalsDateTimeOfExtract from './components/PrincipalsDateTimeOfExtract/PrincipalsDateTimeOfExtract';
 import PrincipalsFilterBar from './components/PrincipalsFilterBar/PrincipalsFilterBar';
 import PrincipalsTable from './components/PrincipalsTable/PrincipalsTable';
@@ -132,9 +131,6 @@ export default function PrincipalsContainer({
 
   return (
     <>
-      <PrincipalsHeader
-        numberOfPrincipals={getFilteredPrincipals(principals).length}
-      />
       <PrincipalsDateTimeOfExtract dateTimeOfExtract={dateTimeOfExtract} />
       <PrincipalsFilterBar
         searchInputValue={searchInputValue}

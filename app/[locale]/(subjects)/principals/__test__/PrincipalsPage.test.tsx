@@ -11,11 +11,6 @@ describe('principals page', () => {
     clearNock();
   });
 
-  test('should render a header', async () => {
-    const { getHeader } = await renderPrincipalsPage();
-    expect(getHeader()).toBeInTheDocument();
-  });
-
   test('should display a paragraph with the datetime of extract', async () => {
     const { getDateTimeOfExtract } = await renderPrincipalsPage();
     expect(getDateTimeOfExtract()).toBeInTheDocument();
@@ -38,9 +33,6 @@ describe('principals page', () => {
 
   function setUpNock() {
     nock.cleanAll();
-    nock('https://api.skolverket.se')
-      .get(/\/skolenhetsregistret\/v1\/huvudman/)
-      .reply(200, principalsExtract);
 
     nock('https://api.skolverket.se')
       .get(/\/skolenhetsregistret\/v1\/huvudman/)
