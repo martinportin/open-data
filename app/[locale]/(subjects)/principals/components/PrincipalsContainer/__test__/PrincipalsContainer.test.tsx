@@ -3,13 +3,6 @@ import { principalsContainerProps } from './utils/mocks/props';
 import userEvent from '@testing-library/user-event';
 
 describe('principals container', () => {
-  test('should display a header with the number of principals', async () => {
-    const { getHeader } = await renderPrincipalsContainer({
-      ...principalsContainerProps
-    });
-    expect(getHeader()).toBeInTheDocument();
-  });
-
   test('should display the date and time of the extract', async () => {
     const { getDateTimeOfExtract } = await renderPrincipalsContainer({
       ...principalsContainerProps
