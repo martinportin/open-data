@@ -1,3 +1,7 @@
 export default function Home() {
-  return <main>Open Data</main>;
+  return (
+    <main>
+      <h1>Open Data</h1>
+    </main>
+  );
 }
