@@ -1,6 +1,6 @@
-export default function PrincipalsTableBody({
+export default function EducationOrganizersTableBody({
   principals
-}: Readonly<{ principals: Principal[] }>) {
+}: Readonly<{ principals: EducationOrganizers[] }>) {
   const tableRows = principals.map((principal) => (
     <tr key={principal.PeOrgNr}>
       <th>{principal.PeOrgNr}</th>

@@ -1,7 +1,7 @@
-import renderPrincipalsTableBody from './renderPrincipalsTableBody';
+import renderEductaionOrganizersaTableBody from './renderEducationOrganizersTableBody';
 
 describe('principalsTableBody', () => {
-  const principals = [
+  const educationOrganizers = [
     { PeOrgNr: '0000000001', Namn: 'Principal 1', Typ: 'Kommunal' },
     { PeOrgNr: '0000000002', Namn: 'Principal 2', Typ: 'Enskild' },
     { PeOrgNr: '0000000003', Namn: 'Principal 3', Typ: 'Kommunalförbund' },
@@ -12,69 +12,75 @@ describe('principalsTableBody', () => {
   ];
 
   function testNumberOfTableRows(
-    principals: Principal[],
+    educationOrganizers: EducationOrganizers[],
     expectedNumberOfRows: number
   ) {
-    const { getTableRows } = renderPrincipalsTableBody(principals);
+    const { getTableRows } =
+      renderEductaionOrganizersaTableBody(educationOrganizers);
     expect(getTableRows()).toHaveLength(expectedNumberOfRows);
   }
 
   function testNumberOfColumnHeaders(
-    principals: Principal[],
+    educationOrganizers: EducationOrganizers[],
     expectedNumberOfColumnHeaders: number
   ) {
-    const { getTableColumnHeaders } = renderPrincipalsTableBody(principals);
+    const { getTableColumnHeaders } =
+      renderEductaionOrganizersaTableBody(educationOrganizers);
     expect(getTableColumnHeaders()).toHaveLength(expectedNumberOfColumnHeaders);
   }
 
   function testNumberOfColumnHeadersByName(
-    principals: Principal[],
+    educationOrganizers: EducationOrganizers[],
     expectedNumberOfColumnHeaders: number,
     ...names: RegExp[]
   ) {
-    const { getTableColumnHeaders } = renderPrincipalsTableBody(
-      principals,
+    const { getTableColumnHeaders } = renderEductaionOrganizersaTableBody(
+      educationOrganizers,
       ...names
     );
     expect(getTableColumnHeaders()).toHaveLength(expectedNumberOfColumnHeaders);
   }
 
   function testNumberOfColumnDataCells(
-    principals: Principal[],
+    educationOrganizers: EducationOrganizers[],
     expectedNumberOfColumnDataCells: number,
     ...names: RegExp[]
   ) {
-    const { getTableDataCells } = renderPrincipalsTableBody(
-      principals,
+    const { getTableDataCells } = renderEductaionOrganizersaTableBody(
+      educationOrganizers,
       ...names
     );
     expect(getTableDataCells()).toHaveLength(expectedNumberOfColumnDataCells);
   }
 
   test('should render no table rows', () => {
-    const { getTableRow } = renderPrincipalsTableBody([]);
+    const { getTableRow } = renderEductaionOrganizersaTableBody([]);
     expect(getTableRow()).not.toBeInTheDocument();
   });
 
   test('should render one table row', () => {
-    testNumberOfTableRows(principals.slice(0, 1), 1);
+    testNumberOfTableRows(educationOrganizers.slice(0, 1), 1);
   });
 
   test('should render one column header', () => {
-    testNumberOfColumnHeaders(principals.slice(0, 1), 1);
+    testNumberOfColumnHeaders(educationOrganizers.slice(0, 1), 1);
   });
 
   test('should render one column header containing the principal organization number', () => {
-    testNumberOfColumnHeadersByName(principals.slice(0, 1), 1, /0000000001/i);
+    testNumberOfColumnHeadersByName(
+      educationOrganizers.slice(0, 1),
+      1,
+      /0000000001/i
+    );
   });
 
   test('should render two table data cells', () => {
-    testNumberOfColumnDataCells(principals.slice(0, 1), 2);
+    testNumberOfColumnDataCells(educationOrganizers.slice(0, 1), 2);
   });
 
   test('should rendern two table data cells containing principal name and type respectively', () => {
-    const { getTableDataCells } = renderPrincipalsTableBody(
-      principals.slice(0, 1),
+    const { getTableDataCells } = renderEductaionOrganizersaTableBody(
+      educationOrganizers.slice(0, 1),
       /Principal 1/i,
       /Kommunal/i
     );
@@ -82,16 +88,16 @@ describe('principalsTableBody', () => {
   });
 
   test('should render seven table rows', () => {
-    testNumberOfTableRows(principals, 7);
+    testNumberOfTableRows(educationOrganizers, 7);
   });
 
   test('should render seven column headers', () => {
-    testNumberOfColumnHeaders(principals, 7);
+    testNumberOfColumnHeaders(educationOrganizers, 7);
   });
 
   test('should render a column header for each organization number', () => {
     testNumberOfColumnHeadersByName(
-      principals,
+      educationOrganizers,
       7,
       /0000000001/i,
       /0000000002/i,
@@ -104,12 +110,12 @@ describe('principalsTableBody', () => {
   });
 
   test('should render 14 table data cells', () => {
-    testNumberOfColumnDataCells(principals, 14);
+    testNumberOfColumnDataCells(educationOrganizers, 14);
   });
 
   test('should render 7 table cells containing principal name', () => {
     testNumberOfColumnDataCells(
-      principals,
+      educationOrganizers,
       7,
       /Principal 1/i,
       /Principal 2/i,
@@ -123,7 +129,7 @@ describe('principalsTableBody', () => {
 
   test('should render 7 table cells containing principal type', () => {
     testNumberOfColumnDataCells(
-      principals,
+      educationOrganizers,
       7,
       /^Kommunal$/i,
       /Enskild/i,
