@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
-import PrincipalsTableBody from '../../components/PrincipalsTableBody';
+import EducationOrganizersTableBody from '../../components/EducationOrganizersTableBody';
 
-export default function renderPrincipalsTableBody(
-  principals: Principal[],
+export default function renderEductaionOrganizersaTableBody(
+  principals: EducationOrganizers[],
   ...names: RegExp[]
 ) {
   const screen = render(
     <table>
-      <PrincipalsTableBody principals={principals} />
+      <EducationOrganizersTableBody principals={principals} />
     </table>
   );
 
