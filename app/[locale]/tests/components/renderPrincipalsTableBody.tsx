@@ -5,12 +5,13 @@ export default function renderPrincipalsTableBody(
   principals: Principal[],
   ...names: RegExp[]
 ) {
-  const table = document.createElement('table');
-  const screen = render(<PrincipalsTableBody principals={principals} />, {
-    container: document.body.appendChild(table)
-  });
+  const screen = render(
+    <table>
+      <PrincipalsTableBody principals={principals} />
+    </table>
+  );
 
-  function getColumnHeadersByName(names: RegExp[]) {
+  function getTableColumnHeadersByName(names: RegExp[]) {
     return names.filter((name) => screen.getByRole('columnheader', { name }));
   }
 
@@ -19,11 +20,11 @@ export default function renderPrincipalsTableBody(
   }
 
   return {
-    getRow: () => screen.queryByRole('row'),
-    getRows: () => screen.getAllByRole('row'),
-    getColumnHeader: () =>
+    getTableRow: () => screen.queryByRole('row'),
+    getTableRows: () => screen.getAllByRole('row'),
+    getTableColumnHeaders: () =>
       names?.length
-        ? getColumnHeadersByName(names)
+        ? getTableColumnHeadersByName(names)
         : screen.getAllByRole('columnheader'),
     getTableDataCells: () =>
       names?.length

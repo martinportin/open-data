@@ -15,16 +15,16 @@ describe('principalsTableBody', () => {
     principals: Principal[],
     expectedNumberOfRows: number
   ) {
-    const { getRows } = renderPrincipalsTableBody(principals);
-    expect(getRows()).toHaveLength(expectedNumberOfRows);
+    const { getTableRows } = renderPrincipalsTableBody(principals);
+    expect(getTableRows()).toHaveLength(expectedNumberOfRows);
   }
 
   function testNumberOfColumnHeaders(
     principals: Principal[],
     expectedNumberOfColumnHeaders: number
   ) {
-    const { getColumnHeader } = renderPrincipalsTableBody(principals);
-    expect(getColumnHeader()).toHaveLength(expectedNumberOfColumnHeaders);
+    const { getTableColumnHeaders } = renderPrincipalsTableBody(principals);
+    expect(getTableColumnHeaders()).toHaveLength(expectedNumberOfColumnHeaders);
   }
 
   function testNumberOfColumnHeadersByName(
@@ -32,8 +32,11 @@ describe('principalsTableBody', () => {
     expectedNumberOfColumnHeaders: number,
     ...names: RegExp[]
   ) {
-    const { getColumnHeader } = renderPrincipalsTableBody(principals, ...names);
-    expect(getColumnHeader()).toHaveLength(expectedNumberOfColumnHeaders);
+    const { getTableColumnHeaders } = renderPrincipalsTableBody(
+      principals,
+      ...names
+    );
+    expect(getTableColumnHeaders()).toHaveLength(expectedNumberOfColumnHeaders);
   }
 
   function testNumberOfColumnDataCells(
@@ -49,8 +52,8 @@ describe('principalsTableBody', () => {
   }
 
   test('should render no table rows', () => {
-    const { getRow } = renderPrincipalsTableBody([]);
-    expect(getRow()).not.toBeInTheDocument();
+    const { getTableRow } = renderPrincipalsTableBody([]);
+    expect(getTableRow()).not.toBeInTheDocument();
   });
 
   test('should render one table row', () => {
