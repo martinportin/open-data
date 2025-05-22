@@ -1,5 +1,5 @@
 interface EducationOrganizers {
-  PeOrgNr: string;
-  Namn: string;
-  Typ: string;
+  organizationNumber: string;
+  displayName: string;
+  organizerType: string;
 }

@@ -2,10 +2,10 @@ export default function EducationOrganizersTableBody({
   principals
 }: Readonly<{ principals: EducationOrganizers[] }>) {
   const tableRows = principals.map((principal) => (
-    <tr key={principal.PeOrgNr}>
-      <th>{principal.PeOrgNr}</th>
-      <td>{principal.Namn}</td>
-      <td>{principal.Typ}</td>
+    <tr key={principal.organizationNumber}>
+      <th>{principal.organizationNumber}</th>
+      <td>{principal.displayName}</td>
+      <td>{principal.organizerType}</td>
     </tr>
   ));
 
