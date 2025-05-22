@@ -2,12 +2,12 @@ import { render } from '@testing-library/react';
 import EducationOrganizersTableBody from '../../components/EducationOrganizersTableBody';
 
 export default function renderEductaionOrganizersaTableBody(
-  principals: EducationOrganizers[],
+  educationOrganizers: EducationOrganizers[],
   ...names: RegExp[]
 ) {
   const screen = render(
     <table>
-      <EducationOrganizersTableBody principals={principals} />
+      <EducationOrganizersTableBody educationOrganizers={educationOrganizers} />
     </table>
   );
 
