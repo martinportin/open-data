@@ -24,7 +24,7 @@ describe('filter checkbox', () => {
       isChecked,
       handleCheckboxChange
     );
-    expect(getCheckbox().id).toEqual(id);
+    expect(getCheckbox()).toHaveAttribute('id', id);
   });
 
   test('checkbox should be checked', async () => {
@@ -47,7 +47,7 @@ describe('filter checkbox', () => {
     expect(getCheckbox()).not.toBeChecked();
   });
 
-  test('"handleCheckboxChange" should be called when checkbox get checked/unchecked', async () => {
+  test('"handleCheckboxChange" should be called when checkbox gets checked/unchecked', async () => {
     const { getCheckbox, getHandleCheckboxChange } = await renderFilterCheckbox(
       labelName,
       id,
