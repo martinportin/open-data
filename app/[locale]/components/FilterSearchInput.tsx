@@ -18,7 +18,7 @@ export default function FilterSearchInput({
   return (
     <>
       <label htmlFor={id}>{t(labelName)}</label>
-      <input id={id} type="text" value={value} onChange={handleInputChange} />
+      <input id={id} type="search" value={value} onChange={handleInputChange} />
     </>
   );
 }

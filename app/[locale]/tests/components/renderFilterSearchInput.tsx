@@ -31,7 +31,7 @@ export default async function renderFilterSearchInput(
   );
 
   return {
-    getSearchInput: () => screen.getByRole('textbox', { name }),
+    getSearchInput: () => screen.getByRole('searchbox', { name }),
     getHandleInputChange: () => handleInputChange
   };
 }
