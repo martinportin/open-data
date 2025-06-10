@@ -1,8 +1,8 @@
 'use client';
 
 import { render } from '@testing-library/react';
-import FilterSearchInput from '../../components/FilterSearchInput';
-import translationProviderProps from './utils/props';
+import FilterSearchInput from '../../../components/FilterSearchInput';
+import translationProviderProps from './props';
 import TranslationsProvider from '@/app/components/TranslationsProvider';
 
 export default async function renderFilterSearchInput(

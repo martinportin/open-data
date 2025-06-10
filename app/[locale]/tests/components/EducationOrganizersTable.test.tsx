@@ -1,4 +1,4 @@
-import renderEducationOrganizersTable from './renderEducationOrganizersTable';
+import renderEducationOrganizersTable from './utils/renderEducationOrganizersTable';
 
 describe('education organizers table', () => {
   const educationOrganizers = [

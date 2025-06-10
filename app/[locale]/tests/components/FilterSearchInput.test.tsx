@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import renderFilterSearchInput from './renderFilterSearchInput';
+import renderFilterSearchInput from './utils/renderFilterSearchInput';
 
 describe('filter search input', () => {
   const id = 'mockId';

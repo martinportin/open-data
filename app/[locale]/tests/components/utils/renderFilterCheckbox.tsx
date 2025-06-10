@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import FilterCheckbox from '../../components/FilterCheckbox';
+import FilterCheckbox from '../../../components/FilterCheckbox';
 import TranslationsProvider from '@/app/components/TranslationsProvider';
 import initTranslations from '@/app/i18n';
 

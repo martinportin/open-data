@@ -1,4 +1,4 @@
-import renderEducationOrganizersTableHeader from './renderEducationOrganizersTableHeader';
+import renderEducationOrganizersTableHeader from './utils/renderEducationOrganizersTableHeader';
 
 describe('principals table header', () => {
   test('should render a table row', async () => {
