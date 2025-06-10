@@ -1,4 +1,4 @@
-import renderFilterbar from './renderFilterbar';
+import renderFilterbar from './utils/renderFilterbar';
 
 describe('filterbar', () => {
   const checkboxNames = [

@@ -1,5 +1,5 @@
 import { render, within } from '@testing-library/react';
-import EducationOrganizersTable from '../../components/EducationOrganizersTable';
+import EducationOrganizersTable from '../../../components/EducationOrganizersTable';
 import TranslationsProvider from '@/app/components/TranslationsProvider';
 import initTranslations from '@/app/i18n';
 

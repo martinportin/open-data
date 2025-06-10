@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import TranslationsProvider from '@/app/components/TranslationsProvider';
 import initTranslations from '@/app/i18n';
-import EducationOrganizersTableHeader from '../../components/EducationOrganizersTableHeader';
+import EducationOrganizersTableHeader from '../../../components/EducationOrganizersTableHeader';
 
 export default async function renderEducationOrganizersTableHeader(
   ...names: RegExp[]

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import Filterbar from '../../components/Filterbar';
+import Filterbar from '../../../components/Filterbar';
 import TranslationsProvider from '@/app/components/TranslationsProvider';
-import translationProviderProps from './utils/props';
+import translationProviderProps from './props';
 
 export default async function renderFilterbar() {
   const { locale, i18Namespaces, resources } = await translationProviderProps();

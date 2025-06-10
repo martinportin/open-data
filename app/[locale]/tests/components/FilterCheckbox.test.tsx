@@ -1,4 +1,4 @@
-import renderFilterCheckbox from './renderFilterCheckbox';
+import renderFilterCheckbox from './utils/renderFilterCheckbox';
 import userEvent from '@testing-library/user-event';
 
 describe('filter checkbox', () => {

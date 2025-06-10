@@ -1,4 +1,4 @@
-import renderEductaionOrganizersaTableBody from './renderEducationOrganizersTableBody';
+import renderEductaionOrganizersaTableBody from './utils/renderEducationOrganizersTableBody';
 
 describe('principalsTableBody', () => {
   const educationOrganizers = [

@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import EducationOrganizersTableBody from '../../components/EducationOrganizersTableBody';
+import EducationOrganizersTableBody from '../../../components/EducationOrganizersTableBody';
 
 export default function renderEductaionOrganizersaTableBody(
   educationOrganizers: EducationOrganizers[],
